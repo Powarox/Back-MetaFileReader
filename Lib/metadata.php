@@ -1,5 +1,7 @@
 <?php
 
+namespace Robin\Lib;
+
 class metadata {
 
     // Constructor
@@ -14,7 +16,7 @@ class metadata {
 
 // Return les différent type de méta d'un fichier
     public function getMetadataType(){
-        
+
     }
 
 // Return toutes les méta d'un certain type
