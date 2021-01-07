@@ -1,6 +1,10 @@
 Documentation de la lib
 
-1. Installation
+1. Information concernant la lib
+    ...
+
+
+2. Installation
     - Composer :
         ...
 
@@ -11,10 +15,9 @@ Documentation de la lib
         ...
 
 
-2. Information concernant la lib
-
-
 3. Détails de la composition
+    ...
 
 
-4. 
+4. Details de chaque méthode
+    ...
