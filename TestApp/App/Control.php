@@ -15,6 +15,10 @@ class Control {
     }
 
     public function testApp(){
+        // TestApp
+
+        var_dump();
+
         $this->view->makeTestPage();
     }
 }
