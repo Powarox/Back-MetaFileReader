@@ -19,7 +19,7 @@ $lib = new Metadata($file);
 // Test Methodes Lib
 $res = $lib->getMeta($file);
 $lib->saveMetaJsonFile("Out","testFile", $res);
-
+$lib->getErr1();
 
 // Resultats
 var_dump($res);

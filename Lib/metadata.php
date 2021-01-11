@@ -60,4 +60,10 @@ class Metadata {
         return $metaClean;
     }
 
+
+// Gestion des erreurs
+    public function getErr1(){
+        throw new \Exception("Error ... Message", 1);
+    }
+
 }
