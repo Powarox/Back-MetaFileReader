@@ -27,12 +27,9 @@ class Metadata {
         return $meta;
     }
 
-// Add meta dans un fichier // Créer un fichier contenant les métadata
+// Add meta dans un fichier
     public function setMeta($file, $meta){
-        $data = json_encode($meta);
-        $metaTxt = fopen('Out/'.$file.'.json', 'w');
-        fputs($metaTxt, $data);
-        fclose($metaTxt);
+
     }
 
 // Sort meta par type
@@ -45,9 +42,12 @@ class Metadata {
 
     }
 
-// Save meta dans un fichier json
+// Save meta dans un fichier json // Créer un fichier contenant les métadata
     public function saveMetaJsonFile($folder, $name, $meta){
-
+        $data = json_encode($meta);
+        $metaTxt = fopen($folder.'/'.$name.'.json', 'w');
+        fputs($metaTxt, $data);
+        fclose($metaTxt);
     }
 
 // Put meta dans un fichier json

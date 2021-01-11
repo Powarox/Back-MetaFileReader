@@ -8,16 +8,17 @@ require_once('Metadata.php');
 $img = 'Files/img1.png';
 $file = 'Files/file1.pdf';
 
+$lib = new Metadata($file);
+
 
 // Test Local
 
 
-// Instance Lib
-$lib = new Metadata($file);
+
 
 // Test Methodes Lib
 $res = $lib->getMeta($file);
-$lib->setMeta("testFile", $res);
+$lib->saveMetaJsonFile("Out","testFile", $res);
 
 
 // Resultats
