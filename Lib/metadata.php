@@ -1,18 +1,20 @@
 <?php
 
-namespace Robin\Lib;
+namespace Lib;
 
-class metadata {
+class Metadata {
     protected $file;
 
-    // Constructor
+// Constructor
     public function __construct($file){
         $this->file = $file;
     }
 
-// Return toutes les méta d'un fichier
+// Return toutes les méta d'un fichier // Extraction Métadonnée
     public function getMeta($file){
-        return $meta;
+        $data = shell_exec("exiftool -json ".$file);
+        $metaData = json_decode($data, true);
+        return $metaData;
     }
 
 // Return les différent type de méta d'un fichier
@@ -25,9 +27,12 @@ class metadata {
         return $meta;
     }
 
-// Add meta dans un fichier
+// Add meta dans un fichier // Créer un fichier contenant les métadata
     public function setMeta($file, $meta){
-
+        $data = json_encode($meta);
+        $metaTxt = fopen('Out/'.$file.'.json', 'w');
+        fputs($metaTxt, $data);
+        fclose($metaTxt);
     }
 
 // Sort meta par type
