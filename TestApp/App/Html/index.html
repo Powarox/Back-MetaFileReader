@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="Template.css"/>
+    	<!-- <link rel="stylesheet" href="Responsive.css"/> -->
+    	<script defer src="Upload.js"></script>
+    	<script src="https://kit.fontawesome.com/646143606b.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Test Librairie PHP ...name...</h1>
+        </header>
+
+        <main>
+            <section class="upload">
+                <form id="dropFileForm" action="" method="post" onsubmit="uploadFiles(event)">
+    	            <div id="dropFileDiv"
+    	            ondragover="overrideDefault(event);fileHover();" ondragenter="overrideDefault(event);fileHover();" ondragleave="overrideDefault(event);fileHoverEnd();" ondrop="overrideDefault(event);fileHoverEnd();
+    	                  addFiles(event);">
+    	                <label for="fileInput" id="fileLabel">
+    	                    <i class="fas fa-upload"></i>
+    	                    <span id="fileLabelText">
+    	                      Choose a file
+    	                    </span>
+    	                    <span id="uploadStatus"></span>
+    	                    <i class="fas fa-upload"></i>
+    	                </label>
+    	                <input type="file" name="files[]" id="fileInput" multiple onchange="addFiles(event)">
+    	            </div>
+
+    				<progress id="progressBar"></progress>
+
+    	            <input id="uploadButton" type="submit" value="Upload">
+    	        </form>
+            </section>
+
+            <section class="preview fantome" id="test">
+                <div class="container1">
+                    <div class="box">
+                        <h2>File</h2>
+                        <div class="meta">
+                            <h3>Key</h3>
+                            <p>value</p>
+
+                            <h3>Key</h3>
+                            <p>value...... .............................. ............. ....... ......-------- -------------------- ----------- ---------------- ---------- --------</p>
+
+                            <h3>Key</h3>
+                            <p>value</p>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <h2>Exif</h2>
+                    </div>
+                </div>
+
+                <div class="container2">
+                    <div class="box">
+                        <h2>XMP</h2>
+                    </div>
+
+                    <div class="box">
+                        <h2>Location</h2>
+                    </div>
+
+                    <div class="box">
+                        <h2>Author</h2>
+                    </div>
+                </div>
+
+                <div class="container1">
+                    <div class="box">
+                        <h2>Other</h2>
+                    </div>
+
+                    <div class="box">
+                        <h2>Other</h2>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>
