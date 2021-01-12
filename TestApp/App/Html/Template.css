@@ -16,7 +16,7 @@ main {
 
 /* ############ Upload Page ############ */
 .upload {
-	margin: 100px 0;
+	margin: 75px 0;
 	display: flex;
 	justify-content: space-around;
 }

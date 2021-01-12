@@ -43,9 +43,9 @@ function changeStatus(text){
 
 function uploadFiles(event){
     console.log(droppedFiles);
-    if(typeof droppedFiles === 'undefined'){
-        return false;
-    }
+    // if(typeof droppedFiles === 'undefined'){
+    //     return false;
+    // }
 
     console.log('uploadFiles');
     event.preventDefault();  // Stop redirect to PHP
