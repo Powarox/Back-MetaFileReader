@@ -20,7 +20,8 @@ class Metadata {
 
 
 // Return les différent type de méta d'un fichier
-    public function getMetadataType($file){
+    public function getMetadataType($meta){
+        $typeMeta = array_keys($meta[0]);
         return $typeMeta;
     }
 
@@ -28,6 +29,16 @@ class Metadata {
 // Return toutes les méta d'un certain type
     public function getMetaOfType($file, $type){
         return $meta;
+    }
+
+// Return toutes les méta trié par type
+    public function getMetaSortType(){
+        // Warning need moyen de classer les types
+        $arrayMetaType = array(
+            'type1' => array('file' => 'test', 'source' => 'test');
+            'type2' => array('XMP' => 'test', 'XMPLoc' => 'test');
+        );
+        return $arrayMetaType;
     }
 
 
@@ -72,6 +83,14 @@ class Metadata {
 
 // Gestion des erreurs
     public function getErr1(){
+        throw new \Exception("Error ... Message", 1);
+    }
+
+    public function getErr2(){
+        throw new \Exception("Error ... Message", 1);
+    }
+
+    public function getErr3(){
         throw new \Exception("Error ... Message", 1);
     }
 }
