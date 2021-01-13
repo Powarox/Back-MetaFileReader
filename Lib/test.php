@@ -12,12 +12,31 @@ $lib = new Metadata($file);
 
 // Extract Meta
 echo '<h1>Pdf File</h1>';
+
+echo '<h3>Extract Meta</h3>';
 $metaFile = $lib->getMeta($file);
 var_dump($metaFile);
 
+echo '<h3>Get Type Meta</h3>';
 $metaType = $lib->getMetadataType($metaFile);
 var_dump($metaType);
 
+echo '<h3>Get Meta Of Type : ...</h3>';
+$metaOfType = $lib->getMetaOfType($metaFile, 'Contributor');
+
+echo '<h3>Sort Meta By Key</h3>';
+$sortMeta = $lib->sortMetaByKey($metaFile);
+var_dump($sortMeta);
+
+$test = array(
+    'test' => 'ok',
+    'test' => 'ko',
+    'try' => 'ok',
+);
+
+echo '<h3>Suppress Doublons</h3>';
+$metaWithoutDoublons = $lib->suppressMetaDouble($test);
+var_dump($metaWithoutDoublons);
 
 
 

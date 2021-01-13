@@ -15,28 +15,34 @@ class Metadata {
     public function getMeta($file){
         $data = shell_exec("exiftool -json ".$file);
         $metaData = json_decode($data, true);
-        return $metaData;
+        return $metaData[0];
     }
 
 
 // Return les différent type de méta d'un fichier
     public function getMetadataType($meta){
-        $typeMeta = array_keys($meta[0]);
+        $typeMeta = array_keys($meta);
         return $typeMeta;
     }
 
 
 // Return toutes les méta d'un certain type
-    public function getMetaOfType($file, $type){
+    public function getMetaOfType($meta, $type){
+        foreach($meta as $key => $value){
+            if($key === $type){
+                echo 'je suis dedans';
+            }
+        }
         return $meta;
     }
+
 
 // Return toutes les méta trié par type
     public function getMetaSortType(){
         // Warning need moyen de classer les types
         $arrayMetaType = array(
-            'type1' => array('file' => 'test', 'source' => 'test');
-            'type2' => array('XMP' => 'test', 'XMPLoc' => 'test');
+            'type1' => array('file' => 'test', 'source' => 'test'),
+            'type2' => array('XMP' => 'test', 'XMPLoc' => 'test'),
         );
         return $arrayMetaType;
     }
@@ -49,8 +55,23 @@ class Metadata {
 
 
 // Sort meta par type
-    public function sortMeta($meta){
-        return $sortedMeta;
+    public function sortMetaByKey($meta){
+        ksort($meta);
+        return $meta;
+    }
+
+// Suppre les meta en doublons
+    public function suppressMetaDouble($meta){
+        $metaClean = [];
+        foreach($meta as $key => $value){
+            if(!key_exists($key, $metaClean)){
+                $metaClean[$key] = $value;
+            }
+            else if($metaClean[$key] != $value){
+                $metaClean[$key] = $value;
+            }
+        }
+        return array_unique($meta);
     }
 
 
@@ -59,6 +80,10 @@ class Metadata {
 
     }
 
+// Modifie les méta d'un fichier json
+    public function modifyMetaJsonFile($foler, $name, $meta){
+        $this->saveMetaJsonFile($foler, $name, $meta);
+    }
 
 // Save meta dans un fichier json // Créer un fichier contenant les métadata
     public function saveMetaJsonFile($folder, $name, $meta){
@@ -74,11 +99,6 @@ class Metadata {
 
     }
 
-
-// Suppre les meta en doublons
-    public function suppressMetaDouble($meta){
-        return $metaClean;
-    }
 
 
 // Gestion des erreurs
