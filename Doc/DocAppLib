@@ -1,23 +1,27 @@
 Documentation de la lib
 
 1. Information concernant la lib
-    ...
+    Description de la lib ...
+    faite par robin et mohamed ...
+    pour faire du traitement de métadonnée ...
 
 
 2. Installation
-    - Composer :
-        ...
+    - Composer (recommandé):
+        {
+            lib/robin-dev : 2.0
+        }
 
     - Github :
-        ...
+        git clone : utl
 
     - Commande Terminal :
         ...
 
 
 3. Détails de la composition
-    ...
+    description des différents fichiers ou lib utilisé pour fonctionnement
 
 
 4. Details de chaque méthode
-    ...
+    description, paramètre, cas d'utilisations
