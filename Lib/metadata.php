@@ -60,6 +60,7 @@ class Metadata {
         return $meta;
     }
 
+
 // Suppre les meta en doublons
     public function suppressMetaDouble($meta){
         $metaClean = [];
@@ -80,10 +81,12 @@ class Metadata {
 
     }
 
+
 // Modifie les méta d'un fichier json
     public function modifyMetaJsonFile($foler, $name, $meta){
         $this->saveMetaJsonFile($foler, $name, $meta);
     }
+
 
 // Save meta dans un fichier json // Créer un fichier contenant les métadata
     public function saveMetaJsonFile($folder, $name, $meta){
@@ -99,6 +102,11 @@ class Metadata {
 
     }
 
+
+// Clean meta selon les normes
+    public function cleanMeta($meta){
+        
+    }
 
 
 // Gestion des erreurs
