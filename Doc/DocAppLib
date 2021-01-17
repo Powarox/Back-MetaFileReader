@@ -28,6 +28,8 @@ Documentation de la lib
 
 
 
+Details fichier composer.json pour poster library
+
     {
         "name": "robindev/metadata",
         "type": "library",
