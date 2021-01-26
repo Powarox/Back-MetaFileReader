@@ -61,3 +61,19 @@ Details fichier composer.json pour poster library
             }
         }
     }
+
+
+
+Consigne :
+
+
+Module d'extraction/insertion de métadonnées
+Les fichiers générés par un utilisateur contiennent des nombreuses informations (dates, localisation, etc). Lorsque ces fichiers sont déposés sur un site, certaines de ces informations pourraient être exploitées et publiées par le site tandis que d'autres informations pourraient être masquées pour diverses raisons (respect de la vie privée, sécurité, etc).
+Inversement, pour des fichiers mis à disposition sur un site, certaines données disponibles pourraient être inscrites dans le fichier.
+
+L'objectif de ce projet est de créer une bibliothèque PHP pour réaliser ces opérations de façon (presque) transparente.
+Un site web simple servant de démo pourra être créé pour tester la bibliothèque créée.
+
+L'utilisation de Adobe XMP (http://www.adobe.com/products/xmp.html) permettra d'encapsuler les données indépendamment du type de fichier manipulé.
+
+Contact : JM Lecarpentier lecarpentier@unicaen.fr

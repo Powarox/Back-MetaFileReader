@@ -22,6 +22,7 @@ main {
 }
 
 #dropFileForm {
+    width: 100%;
 	text-align: center;
 }
 
@@ -31,13 +32,14 @@ main {
 }
 
 #dropFileDiv {
-	width: 750px;
+	width: 80%;
     height: 250px;
     background: #ffcf60;
     display: flex;
     justify-content: center;
     border-radius: 10px;
     transition: 0.6s;
+    margin: auto;
     margin-bottom: 30px;
 }
 
@@ -63,7 +65,7 @@ main {
 }
 
 #progressBar {
-	width: 500px;
+	width: 60%;
 	transition: 0.5s;
 }
 

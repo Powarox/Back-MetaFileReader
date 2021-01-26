@@ -28,6 +28,7 @@ class Metadata {
 
 // Return toutes les méta d'un certain type
     public function getMetaOfType($meta, $type){
+        $metaTypeOf = [];
         foreach($meta as $key => $value){
             if($key === $type){
                 echo 'je suis dedans';
@@ -105,7 +106,7 @@ class Metadata {
 
 // Clean meta selon les normes
     public function cleanMeta($meta){
-        
+
     }
 
 
@@ -121,4 +122,12 @@ class Metadata {
     public function getErr3(){
         throw new \Exception("Error ... Message", 1);
     }
+
+    // try {
+    //
+    // } catch(e) {
+    //
+    // } finally {
+    //
+    // }
 }
