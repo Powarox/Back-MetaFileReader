@@ -11,6 +11,7 @@ header h1 {
 main {
     display: grid;
     grid-template-columns: 1fr;
+    margin: 0 50px;
 }
 
 
@@ -92,10 +93,6 @@ main {
 
 
 /* ############ Preview Meta ############ */
-.previewInfo {
-    margin: 50px;
-}
-
 .previewInfo .container1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -145,11 +142,16 @@ section .box .meta {
 
 
 /* ############ Preview Action ############ */
-.previewAction {
-    margin: 0 50px;
+.previewAction .container2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 20px 0;
 }
 
 
+
+
+/* ############ Other ############ */
 .fantome {
     display: none;
 }
