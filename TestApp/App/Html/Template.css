@@ -92,20 +92,37 @@ main {
 
 
 /* ############ Preview Meta ############ */
-.preview {
-    margin: auto;
-    width: 750px;
-    align-items: center;
+.previewInfo {
+    margin: 50px;
 }
 
-section .container1 {
+.previewInfo .container1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-section .container2 {
+.previewInfo .container1 img {
+    width: 350px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.previewInfo .container1 .cont1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.previewInfo .container1 .cont1 .elem3 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.previewInfo .container2 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    margin: 20px 0;
 }
 
 section .box {
@@ -123,6 +140,13 @@ section .box .meta {
     padding: 0 20px;
     border: 1px solid white;
     border-radius: 10px
+}
+
+
+
+/* ############ Preview Action ############ */
+.previewAction {
+    margin: 0 50px;
 }
 
 

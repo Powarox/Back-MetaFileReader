@@ -14,6 +14,7 @@
         </header>
 
         <main>
+<!-- Section upload permettant le drag & drop -->
             <section class="upload">
                 <form id="dropFileForm" action="" method="post" onsubmit="uploadFiles(event)">
     	            <div id="dropFileDiv"
@@ -36,32 +37,28 @@
     	        </form>
             </section>
 
-            <section class="previewFile fantome">
-                <h2>Une preview de l'image upload</h2>
-            </section>
-
+<!-- Affichage des métadata contenue dans le fichier upload -->
             <section class="previewInfo fantome">
-                <div class="container1">
-                    <div class="box">
-                        <h2>File</h2>
-                        <div class="meta">
-                            <h3>Key</h3>
-                            <p>value</p>
+                <h2>Metada of file</h2>
+                <section class="container1">
+                    <img src="default_pdf_image.jpg" alt="Une image">
 
-                            <h3>Key</h3>
-                            <p>value...... .............................. ............. ....... ......-------- -------------------- ----------- ---------------- ---------- --------</p>
-
-                            <h3>Key</h3>
-                            <p>value</p>
+                    <section class="cont1">
+                        <div class="box elem1">
+                            <h2>Exif</h2>
                         </div>
-                    </div>
 
-                    <div class="box">
-                        <h2>Exif</h2>
-                    </div>
-                </div>
+                        <div class="box elem2">
+                            <h2>Other</h2>
+                        </div>
 
-                <div class="container2">
+                        <div class="box elem3">
+                            <h2>File</h2>
+                        </div>
+                    </section>
+                </section>
+
+                <section class="container2">
                     <div class="box">
                         <h2>XMP</h2>
                     </div>
@@ -73,19 +70,10 @@
                     <div class="box">
                         <h2>Author</h2>
                     </div>
-                </div>
-
-                <div class="container1">
-                    <div class="box">
-                        <h2>Other</h2>
-                    </div>
-
-                    <div class="box">
-                        <h2>Other</h2>
-                    </div>
-                </div>
+                </section>
             </section>
 
+<!-- Affichage des actions possible sur les métadata -->
             <section class="previewAction fantome">
                 <h2>Action for users</h2>
                 <ul>
@@ -102,3 +90,52 @@
         </footer>
     </body>
 </html>
+
+
+
+
+<!-- <section class="previewInfo fantome">
+    <div class="container1">
+        <div class="box">
+            <h2>File</h2>
+            <div class="meta">
+                <h3>Key</h3>
+                <p>value</p>
+
+                <h3>Key</h3>
+                <p>value...... .............................. ............. ....... ......</p>
+
+                <h3>Key</h3>
+                <p>value</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Exif</h2>
+        </div>
+    </div>
+
+    <div class="container2">
+        <div class="box">
+            <h2>XMP</h2>
+        </div>
+
+        <div class="box">
+            <h2>Location</h2>
+        </div>
+
+        <div class="box">
+            <h2>Author</h2>
+        </div>
+    </div>
+
+    <div class="container1">
+        <div class="box">
+            <h2>Other</h2>
+        </div>
+
+        <div class="box">
+            <h2>Other</h2>
+        </div>
+    </div>
+</section> -->

@@ -52,7 +52,7 @@ function uploadFiles(event){
     changeStatus("Uploading...");
 
     setVisiblePreview();
-    
+
     // console.log("SubmitXHR");
     // let xhr = new XMLHttpRequest();
     // xhr.open('POST', 'https://dev-21606393.users.info.unicaen.fr/devoir-idc2020/MoriniereRobinDev/index.php?obj=pdf&action=upload');
@@ -95,10 +95,6 @@ function setVisiblePreview(){
     // Invisible upload section
     let upload = document.querySelector('.upload');
     upload.classList.add('fantome');
-
-    // Show section preview image/pdf
-    let previewFile = document.querySelector('.previewFile');
-    previewFile.classList.remove('fantome');
 
     // Show metadata of file upload
     let previewInfo = document.querySelector('.previewInfo');
