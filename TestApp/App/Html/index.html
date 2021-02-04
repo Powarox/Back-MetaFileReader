@@ -88,6 +88,38 @@
                     <a href="#">btn</a>
                 </div>
             </section>
+
+
+            <section>
+                <form class="" action="index.html" method="post">
+                    <label for="modifyInput">Choisir la métadonnées à modifier :
+                        <select name="metaType">
+                            <optgroup label="XMP">
+                                <option value="hamster" disabled>disabled</option>
+                            </optgroup>
+
+                            <optgroup label="File">
+                                <option value="Author">Author</option>
+                            </optgroup>
+
+                            <optgroup label="Exif">
+                                <option value="exiftool">exiftool</option>
+                            </optgroup>
+
+                            <optgroup label="Location">
+                                <option value="Directory">Directory</option>
+                            </optgroup>
+
+                            <optgroup label="Other">
+                                <option value="Other">Other</option>
+                            </optgroup>
+                        </select>
+                    </label>
+                    <input id="modifyInput" type="text" name="" value="méta of type selected">
+                </form>
+            </section>
+
+
         </main>
 
         <footer>
