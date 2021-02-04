@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="Template.css"/>
     	<!-- <link rel="stylesheet" href="Responsive.css"/> -->
     	<script defer src="Upload.js"></script>
+        <script defer src="Actions.js"></script>
     	<script src="https://kit.fontawesome.com/646143606b.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -82,11 +83,6 @@
                     <li>Export</li>
                     <li>...</li>
                 </ul>
-                <div class="container2">
-                    <button type="button" name="button"></button>
-                    <a href="#">btn</a>
-                    <a href="#">btn</a>
-                </div>
             </section>
 
 
@@ -95,7 +91,7 @@
                     <label for="modifyInput">Choisir la métadonnées à modifier :
                         <select name="metaType">
                             <optgroup label="XMP">
-                                <option value="hamster" disabled>disabled</option>
+                                <option value="disabled" disabled>No meta XMP</option>
                             </optgroup>
 
                             <optgroup label="File">
@@ -115,11 +111,17 @@
                             </optgroup>
                         </select>
                     </label>
+
                     <input id="modifyInput" type="text" name="" value="méta of type selected">
+
+                    <button id="addElem" type="button" name="button">Ajouter</button>
+
+                    <button type="button" name="button">Supprimer</button>
                 </form>
             </section>
 
-
+            <section id="test">
+            </section>
         </main>
 
         <footer>
