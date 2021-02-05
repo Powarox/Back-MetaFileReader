@@ -5,8 +5,9 @@
         <title></title>
         <link rel="stylesheet" href="Template.css"/>
     	<!-- <link rel="stylesheet" href="Responsive.css"/> -->
-    	<script defer src="Upload.js"></script>
-        <script defer src="Actions.js"></script>
+    	<script defer src="js/Upload.js"></script>
+        <script defer src="js/Actions.js"></script>
+        <script defer src="js/CustomElements/Component.js"></script>
     	<script src="https://kit.fontawesome.com/646143606b.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -86,37 +87,18 @@
             </section>
 
 
-            <section>
+            <section class="modifyMeta">
                 <form class="" action="index.html" method="post">
-                    <label for="modifyInput">Choisir la métadonnées à modifier :
-                        <select name="metaType">
-                            <optgroup label="XMP">
-                                <option value="disabled" disabled>No meta XMP</option>
-                            </optgroup>
+                    <label for="modifyInput">Choisir la métadonnées à modifier :</label>
+                    <article class="">
+                        <select-meta></select-meta>
 
-                            <optgroup label="File">
-                                <option value="Author">Author</option>
-                            </optgroup>
+                        <input id="modifyInput" type="text" name="" value="méta of type selected">
 
-                            <optgroup label="Exif">
-                                <option value="exiftool">exiftool</option>
-                            </optgroup>
+                        <button id="addElem" type="button" name="button">Ajouter</button>
 
-                            <optgroup label="Location">
-                                <option value="Directory">Directory</option>
-                            </optgroup>
-
-                            <optgroup label="Other">
-                                <option value="Other">Other</option>
-                            </optgroup>
-                        </select>
-                    </label>
-
-                    <input id="modifyInput" type="text" name="" value="méta of type selected">
-
-                    <button id="addElem" type="button" name="button">Ajouter</button>
-
-                    <button type="button" name="button">Supprimer</button>
+                        <button type="button" name="button">Supprimer</button>
+                    </article>
                 </form>
             </section>
 
@@ -125,7 +107,6 @@
         </main>
 
         <footer>
-
         </footer>
     </body>
 </html>
@@ -133,48 +114,24 @@
 
 
 
-<!-- <section class="previewInfo fantome">
-    <div class="container1">
-        <div class="box">
-            <h2>File</h2>
-            <div class="meta">
-                <h3>Key</h3>
-                <p>value</p>
+<!-- <select name="metaType">
+    <optgroup label="XMP">
+        <option value="disabled" disabled>No meta XMP</option>
+    </optgroup>
 
-                <h3>Key</h3>
-                <p>value...... .............................. ............. ....... ......</p>
+    <optgroup label="File">
+        <option value="Author">Author</option>
+    </optgroup>
 
-                <h3>Key</h3>
-                <p>value</p>
-            </div>
-        </div>
+    <optgroup label="Exif">
+        <option value="exiftool">exiftool</option>
+    </optgroup>
 
-        <div class="box">
-            <h2>Exif</h2>
-        </div>
-    </div>
+    <optgroup label="Location">
+        <option value="Directory">Directory</option>
+    </optgroup>
 
-    <div class="container2">
-        <div class="box">
-            <h2>XMP</h2>
-        </div>
-
-        <div class="box">
-            <h2>Location</h2>
-        </div>
-
-        <div class="box">
-            <h2>Author</h2>
-        </div>
-    </div>
-
-    <div class="container1">
-        <div class="box">
-            <h2>Other</h2>
-        </div>
-
-        <div class="box">
-            <h2>Other</h2>
-        </div>
-    </div>
-</section> -->
+    <optgroup label="Other">
+        <option value="Other">Other</option>
+    </optgroup>
+</select> -->

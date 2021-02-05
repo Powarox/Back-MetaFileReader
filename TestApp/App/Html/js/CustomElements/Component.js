@@ -1,13 +1,5 @@
 "use strict"
 
-let addBtn = document.getElementById('addElem')
-addBtn.addEventListener('click', (ev) => {
-    let test = document.getElementById('test')
-    let newCustom = document.createElement('select-meta')
-    test.appendChild(newCustom)
-})
-
-
 class MyComponent extends HTMLElement {
     connectedCallback() {
         let list = {'XMP': ['disabled', 'elem2', 'elem3', 'elem4'], 'File': 'Author', 'Exif': 'exiftool', 'Location': 'Directory', 'Other': 'Other'}
