@@ -14,11 +14,18 @@ class Control {
         $this->view->render();
     }
 
+    // Home page
     public function testApp(){
-        // TestApp
-
-        // var_dump("action a def");
-
         $this->view->makeHomePage();
+    }
+
+    // Upload
+    public function uplaod(){
+
+    }
+
+    // Use Lib to work
+    public function actionOnFile(){
+        
     }
 }
