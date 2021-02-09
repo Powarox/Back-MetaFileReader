@@ -31,8 +31,7 @@ class Control {
         // Vérifier si le formulaire a été soumis
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Upload vide
-            var_dump($_POST);
-            if ($_FILES['pdf']['error'] != 0) {
+            if ($_FILES['files']['error'] != 0) {
                 $this->view->displayUploadFailure();
             }
 
@@ -55,6 +54,10 @@ class Control {
         }
 
         $this->view->displayUploadFailure();
+    }
+
+    public function uploadAjaxSucces(){
+        $this->view->displayUploadSucces();
     }
 
     // Rendu
