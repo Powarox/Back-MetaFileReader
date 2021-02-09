@@ -1,8 +1,13 @@
 <?php
 
-require_once('App/Control.php');
-require_once('/Lib/metadata.php');
+namespace TestApp;
 
+require_once('Loader/Autoload.php');
 
-$control = new Control();
+spl_autoload_register('TestApp\Loader\Autoload::monAutoload');
+
+use TestApp\App\Control;
+use TestApp\Lib\Metadata;
+
+$control = new App\Control();
 $control->execute();
