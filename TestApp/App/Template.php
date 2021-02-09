@@ -21,7 +21,7 @@
         <main>
 <!-- Section upload permettant le drag & drop -->
             <section class="upload">
-                <form id="dropFileForm" action="" method="post" onsubmit="uploadFiles(event)">
+                <form id="dropFileForm" action="index.php?action=upload" method="post" onsubmit="uploadFiles(event)">
     	            <div id="dropFileDiv"
     	            ondragover="overrideDefault(event);fileHover();" ondragenter="overrideDefault(event);fileHover();" ondragleave="overrideDefault(event);fileHoverEnd();" ondrop="overrideDefault(event);fileHoverEnd();
     	                  addFiles(event);">

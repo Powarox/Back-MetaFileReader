@@ -12,7 +12,20 @@ class View {
         $this->content = "";
     }
 
+    public function displayUploadFailure(){
+        $this->POSTredirect('index.php?');
+    }
+
+    public function displayUploadSucces(){
+        var_dump('succes');
+    }
+
     public function render(){
         include('Template.php');
+    }
+
+    public function POSTredirect($url){
+        header("Location: ".htmlspecialchars_decode($url), true, 303);
+        die;
     }
 }

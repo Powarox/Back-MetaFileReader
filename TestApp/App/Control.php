@@ -1,7 +1,5 @@
 <?php
 
-// require_once('View.php');
-
 namespace TestApp\App;
 
 class Control {
@@ -10,7 +8,14 @@ class Control {
     }
 
     public function execute(){
-        $this->testApp($this->view);
+        if(key_exists('action', $_GET)){
+            $action = $_GET['action'];
+            $this->$action();
+        }
+        else {
+            $this->testApp();
+        }
+
         $this->view->render();
     }
 
@@ -19,13 +24,46 @@ class Control {
         $this->view->makeHomePage();
     }
 
-    // Upload
-    public function uplaod(){
+    // Upload : récup files
+    public function upload(){
+        // traintement file upload
+
+        // Vérifier si le formulaire a été soumis
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Upload vide
+            var_dump($_POST);
+            if ($_FILES['pdf']['error'] != 0) {
+                $this->view->displayUploadFailure();
+            }
+
+            foreach ($_FILES as $file) {
+                $filename = $file['name'];
+                $_SESSION[$filename] = $file;
+
+                // Enregistre le pdf dans Upload/Documents
+                move_uploaded_file($file["tmp_name"], "DevoirApp/Model/Upload/Documents/".$filename);
+
+                // Enleve l'extension fichier .pdf
+                $name = $this->getFileWithoutExtention($filename);
+
+                // Créer une image du pdf et save dans Upload/Images
+                exec('convert  DevoirApp/Model/Upload/Documents/'.$filename.'[0]  DevoirApp/Model/Upload/FirstPages/'.$name.'.jpg');
+
+                // Metadata Lib
+            }
+            $this->view->displayUploadSucces();
+        }
+
+        $this->view->displayUploadFailure();
+    }
+
+    // Rendu
+    public function traitement(){
 
     }
 
     // Use Lib to work
     public function actionOnFile(){
-        
+
     }
 }

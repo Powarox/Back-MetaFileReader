@@ -43,53 +43,53 @@ function changeStatus(text){
 
 function uploadFiles(event){
     console.log(droppedFiles);
-    if(typeof droppedFiles === 'undefined'){
-        return false;
-    }
-
-    console.log('uploadFiles');
-    event.preventDefault();  // Stop redirect to PHP
-    changeStatus("Uploading...");
-
-    console.log("SubmitXHR");
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://dev-21606393.users.info.unicaen.fr/devoir-idc2020/MoriniereRobinDev/index.php?obj=pdf&action=upload');
-    xhr.responseType = 'json';
-
-    let redirect;
-    if(droppedFiles.length > 1){
-        redirect = 'ajaxUploadMultipleSucces';
-    }
-    else{
-        let file = droppedFiles[0].name;
-        let fileWithoutExtension = file.split('.');
-        redirect = 'ajaxUploadSucces&id=' + fileWithoutExtension[0];
-    }
-
-    let formData = new FormData();
-    for(let i = 0; i < droppedFiles.length; i++) {
-        formData.append(i, droppedFiles[i])
-    }
-
-    xhr.addEventListener('load', function(e) {
-        console.log('xhr response load : ', xhr.response);
-    });
-
-    xhr.upload.addEventListener('progress', function (e) {
-        console.log('Progress Bar : ', e);
-        document.getElementById("progressBar").value = e.loaded  / e.total;
-    });
-
-    // Redirect to php if end of XMLHttpRequest
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            window.location = "https://dev-21606393.users.info.unicaen.fr/devoir-idc2020/MoriniereRobinDev/index.php?obj=pdf&action=" + redirect;
-        }
-    }
-    xhr.send(formData);
+    // if(typeof droppedFiles === 'undefined'){
+    //     return false;
+    // }
+    //
+    // console.log('uploadFiles');
+    // event.preventDefault();  // Stop redirect to PHP
+    // changeStatus("Uploading...");
+    //
+    // console.log("SubmitXHR");
+    // let xhr = new XMLHttpRequest();
+    // xhr.open('POST', 'https://dev-21606393.users.info.unicaen.fr/devoir-idc2020/MoriniereRobinDev/index.php?obj=pdf&action=upload');
+    // xhr.responseType = 'json';
+    //
+    // let redirect;
+    // if(droppedFiles.length > 1){
+    //     redirect = 'ajaxUploadMultipleSucces';
+    // }
+    // else{
+    //     let file = droppedFiles[0].name;
+    //     let fileWithoutExtension = file.split('.');
+    //     redirect = 'ajaxUploadSucces&id=' + fileWithoutExtension[0];
+    // }
+    //
+    // let formData = new FormData();
+    // for(let i = 0; i < droppedFiles.length; i++) {
+    //     formData.append(i, droppedFiles[i])
+    // }
+    //
+    // xhr.addEventListener('load', function(e) {
+    //     console.log('xhr response load : ', xhr.response);
+    // });
+    //
+    // xhr.upload.addEventListener('progress', function (e) {
+    //     console.log('Progress Bar : ', e);
+    //     document.getElementById("progressBar").value = e.loaded  / e.total;
+    // });
+    //
+    // // Redirect to php if end of XMLHttpRequest
+    // xhr.onreadystatechange = function(){
+    //     if(xhr.readyState == 4 && xhr.status == 200) {
+    //         window.location = "https://dev-21606393.users.info.unicaen.fr/devoir-idc2020/MoriniereRobinDev/index.php?obj=pdf&action=" + redirect;
+    //     }
+    // }
+    // xhr.send(formData);
 
     // Affiche la preview
-    setVisiblePreview();
+    // setVisiblePreview();
 }
 
 function setVisiblePreview(){
