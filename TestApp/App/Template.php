@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <title><?php echo $this->title ?></title>
 
-        <link rel="stylesheet" href="App/css/Template.css"/>
-    	<link rel="stylesheet" href="App/css/Responsive.css"/>
+        <link rel="stylesheet" href="App/Css/Template.css"/>
+    	<link rel="stylesheet" href="App/Css/Responsive.css"/>
 
-    	<script defer src="App/js/Upload.js"></script>
-        <script defer src="App/js/Actions.js"></script>
-        <script defer src="App/js/CustomElements/Component.js"></script>
+    	<script defer src="App/Js/Upload.js"></script>
+        <script defer src="App/Js/Actions.js"></script>
+        <script defer src="App/Js/CustomElements/Component.js"></script>
 
     	<script src="https://kit.fontawesome.com/646143606b.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <?php echo $this->content ?>
-
         <header>
             <h1><?php echo $this->title ?></h1>
         </header>
@@ -48,7 +46,7 @@
             <section class="previewInfo fantome">
                 <h2>Metada of file</h2>
                 <section class="container1">
-                    <img src="default_pdf_image.jpg" alt="Une image">
+                    <img src="App/File/Img/default_pdf_image.jpg" alt="Une image">
 
                     <section class="cont1">
                         <div class="box elem1">
