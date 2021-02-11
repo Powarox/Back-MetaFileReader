@@ -23,11 +23,9 @@ class View {
                         <span id="uploadStatus"></span>
                         <i class="fas fa-upload"></i>
                     </label>
-                    <input type="file" name="files" id="fileInput" multiple onchange="addFiles(event)">
+                    <input type="file" name="files" id="fileInput" onchange="addFiles(event)">
                 </div>
-
                 <progress id="progressBar"></progress>
-
                 <input id="uploadButton" type="submit" value="Upload">
             </form>
         </section>';
@@ -46,32 +44,26 @@ class View {
         <section class="previewInfo">
             <h2>Metada of file</h2>
             <section class="container1">
-                <img src="App/File/Img/default_pdf_image.jpg" alt="Une image">
-
+                <img src="App/Files/Img/default_pdf_image.jpg" alt="Une image">
                 <section class="cont1">
                     <div class="box elem1">
                         <h2>Exif</h2>
                     </div>
-
                     <div class="box elem2">
                         <h2>Other</h2>
                     </div>
-
                     <div class="box elem3">
                         <h2>File</h2>
                     </div>
                 </section>
             </section>
-
             <section class="container2">
                 <div class="box">
                     <h2>XMP</h2>
                 </div>
-
                 <div class="box">
                     <h2>Location</h2>
                 </div>
-
                 <div class="box">
                     <h2>Author</h2>
                 </div>

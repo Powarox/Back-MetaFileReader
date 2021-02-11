@@ -75,7 +75,7 @@ function uploadFiles(event){
     // Redirect to php if end of XMLHttpRequest
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200) {
-            window.location = "https://dev-21606393.users.info.unicaen.fr/M1/ProjetLibPhp/TestApp/index.php?action=uploadAjaxSucces";
+            window.location = "https://dev-21606393.users.info.unicaen.fr/M1/ProjetLibPhp/TestApp/index.php?action=displayUploadSucces";
         }
     }
     xhr.send(formData);

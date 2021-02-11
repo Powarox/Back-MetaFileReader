@@ -10,24 +10,26 @@ class Control {
     public function execute(){
         if(key_exists('action', $_GET)  && $_GET['action'] != null){
             $action = $_GET['action'];
-            $this->$action();
+            if(method_exists($this->view, $action)){
+                $this->view->$action();
+            }
+            else {
+                $this->$action();
+            }
         }
         else {
-            $this->testApp();
+            $this->defaultAction();
         }
-
         $this->view->render();
     }
 
     // Home page
-    public function testApp(){
+    public function defaultAction(){
         $this->view->makeHomePage();
     }
 
     // Upload : récup files
     public function upload(){
-        // traintement file upload
-
         // Vérifier si le formulaire a été soumis
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Upload vide
@@ -35,21 +37,9 @@ class Control {
                 $this->view->displayUploadFailure();
             }
 
-            foreach ($_FILES as $file) {
-                $filename = $file['name'];
-                $_SESSION[$filename] = $file;
+            // Traitement du fichier
+            $this->traitementFile($_FILES['files']);
 
-                // Enregistre le pdf dans Upload/Documents
-                move_uploaded_file($file["tmp_name"], "DevoirApp/Model/Upload/Documents/".$filename);
-
-                // Enleve l'extension fichier .pdf
-                $name = $this->getFileWithoutExtention($filename);
-
-                // Créer une image du pdf et save dans Upload/Images
-                exec('convert  DevoirApp/Model/Upload/Documents/'.$filename.'[0]  DevoirApp/Model/Upload/FirstPages/'.$name.'.jpg');
-
-                // Metadata Lib
-            }
             $this->view->displayUploadSucces();
         }
         else {
@@ -57,17 +47,24 @@ class Control {
         }
     }
 
-    public function uploadAjaxSucces(){
-        $this->view->displayUploadSucces();
-    }
-
     public function affichage(){
         $this->view->affichage();
     }
 
     // Rendu
-    public function traitement(){
+    public function traitementFile($file){
+        $filename = $file['name'];
+        $tabExt = explode('.', $filename);
+        $extension = $ext[1];
+        $name = $tabExt[0];
 
+        // Enregistre le pdf
+        move_uploaded_file($file["tmp_name"], "App/Files/Upload/File/".$filename);
+
+// -- Warning Img and file not save -- //
+
+        // Créer une image du pdf et save dans Upload/Images
+        exec('convert  App/Files/Upload/File/'.$filename.'[0]  App/Files/Upload/Img/'.$name.'.jpg');
     }
 
     // Use Lib to work
