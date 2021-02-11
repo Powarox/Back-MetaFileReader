@@ -43,13 +43,15 @@ function changeStatus(text){
 
 function uploadFiles(event){
     console.log(droppedFiles);
-    if(typeof droppedFiles === 'undefined'){
-        return false;
-    }
 
     console.log('uploadFiles');
     event.preventDefault();  // Stop redirect to PHP
     changeStatus("Uploading...");
+
+    if(typeof droppedFiles === 'undefined'){
+        console.log('no such files');
+        return false;
+    }
 
     console.log("SubmitXHR");
     let xhr = new XMLHttpRequest();
@@ -79,7 +81,7 @@ function uploadFiles(event){
     xhr.send(formData);
 
     // Affiche la preview
-    // setVisiblePreview();
+    setVisiblePreview();
 }
 
 function setVisiblePreview(){

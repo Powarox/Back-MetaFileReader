@@ -8,7 +8,7 @@ class Control {
     }
 
     public function execute(){
-        if(key_exists('action', $_GET)){
+        if(key_exists('action', $_GET)  && $_GET['action'] != null){
             $action = $_GET['action'];
             $this->$action();
         }
@@ -52,11 +52,13 @@ class Control {
             }
             $this->view->displayUploadSucces();
         }
-
-        $this->view->displayUploadFailure();
+        else {
+            $this->view->displayUploadFailure();
+        }
     }
 
     public function uploadAjaxSucces(){
+        var_dump("console.log('Upload Ajax')");
         $this->view->displayUploadSucces();
     }
 

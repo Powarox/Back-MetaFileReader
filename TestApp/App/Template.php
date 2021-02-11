@@ -33,7 +33,7 @@
     	                    <span id="uploadStatus"></span>
     	                    <i class="fas fa-upload"></i>
     	                </label>
-    	                <input type="file" name="files[]" id="fileInput" multiple onchange="addFiles(event)">
+    	                <input type="file" name="files" id="fileInput" multiple onchange="addFiles(event)">
     	            </div>
 
     				<progress id="progressBar"></progress>
@@ -80,28 +80,10 @@
 
 <!-- Affichage des actions possible sur les métadata -->
             <section class="previewAction fantome">
-                <h2>Action for users</h2>
-                <ul>
-                    <li>Save</li>
-                    <li>Modify</li>
-                    <li>Export</li>
-                    <li>...</li>
-                </ul>
-            </section>
-
-
-            <section class="modifyMeta">
                 <form class="modifyForm" action="index.html" method="post">
                     <label for="modifyInput">Choisir la métadonnées à modifier :
                         <button id="addElem" type="button" name="button">Ajouter</button>
                     </label>
-                    <!-- <article class="card">
-                        <select-meta></select-meta>
-
-                        <input id="modifyInput" type="text" name="" value="méta of type selected">
-
-                        <button type="button" name="button">Supprimer</button>
-                    </article> -->
                 </form>
             </section>
         </main>
@@ -110,3 +92,12 @@
         </footer>
     </body>
 </html>
+
+
+<!-- <article class="card">
+    <select-meta></select-meta>
+
+    <input id="modifyInput" type="text" name="" value="méta of type selected">
+
+    <button type="button" name="button">Supprimer</button>
+</article> -->
