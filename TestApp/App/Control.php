@@ -58,8 +58,11 @@ class Control {
     }
 
     public function uploadAjaxSucces(){
-        var_dump("console.log('Upload Ajax')");
         $this->view->displayUploadSucces();
+    }
+
+    public function affichage(){
+        $this->view->affichage();
     }
 
     // Rendu
