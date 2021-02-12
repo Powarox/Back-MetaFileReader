@@ -61,8 +61,6 @@ class Control {
         // Enregistre le pdf
         move_uploaded_file($file["tmp_name"], "App/Files/Upload/File/".$filename);
 
-// -- Warning Img and file not save -- //
-
         // Créer une image du pdf et save dans Upload/Images
         exec('convert  App/Files/Upload/File/'.$filename.'[0]  App/Files/Upload/Img/'.$name.'.jpg');
     }
