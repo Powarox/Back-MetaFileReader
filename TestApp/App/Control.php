@@ -55,7 +55,7 @@ class Control {
     public function traitementFile($file){
         $filename = $file['name'];
         $tabExt = explode('.', $filename);
-        $extension = $ext[1];
+        $extension = $tabExt[1];
         $name = $tabExt[0];
 
         // Enregistre le pdf

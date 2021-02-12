@@ -60,7 +60,7 @@ function uploadFiles(event){
 
     let formData = new FormData();
     for(let i = 0; i < droppedFiles.length; i++) {
-        formData.append(i, droppedFiles[i])
+        formData.append('files', droppedFiles[i])
     }
 
     xhr.addEventListener('load', function(e) {
@@ -72,12 +72,16 @@ function uploadFiles(event){
         document.getElementById("progressBar").value = e.loaded  / e.total;
     });
 
-    // Redirect to php if end of XMLHttpRequest
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200) {
             window.location = "https://dev-21606393.users.info.unicaen.fr/M1/ProjetLibPhp/TestApp/index.php?action=displayUploadSucces";
         }
     }
+
+    xhr.onerror = function () {
+      console.log("** An error occurred during the transaction");
+    };
+
     xhr.send(formData);
 
     // Affiche la preview
