@@ -3,8 +3,11 @@
 namespace TestApp\App;
 
 class Control {
-    public function __construct(){
+    protected $lib;
+
+    public function __construct($lib){
         $this->view = new View();
+        $this->lib = $lib;
     }
 
     public function execute(){
@@ -40,6 +43,9 @@ class Control {
             // Traitement du fichier
             $this->traitementFile($_FILES['files']);
 
+            // Appel de la Librairie Metadata
+            $this->traitementOnUpload();
+
             $this->view->displayUploadSucces();
         }
         else {
@@ -65,7 +71,11 @@ class Control {
         exec('convert  App/Files/Upload/File/'.$filename.'[0]  App/Files/Upload/Img/'.$name.'.jpg');
     }
 
-    // Use Lib to work
+// --- Utilisation de la Librairie php ---
+    public function traitementOnUpload(){
+
+    }
+
     public function actionOnFile(){
 
     }

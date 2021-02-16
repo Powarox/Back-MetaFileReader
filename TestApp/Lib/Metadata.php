@@ -3,11 +3,10 @@
 namespace TestApp\Lib;
 
 class Metadata {
-    protected $file;
 
 // Constructor
-    public function __construct($file){
-        $this->file = $file;
+    public function __construct(){
+
     }
 
 
