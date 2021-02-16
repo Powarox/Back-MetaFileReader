@@ -8,7 +8,7 @@ require_once('Metadata.php');
 $img = 'Files/img1.png';
 $file = 'Files/file1.pdf';
 
-$lib = new Metadata($file);
+$lib = new Metadata();
 
 // Extract Meta
 echo '<h1>Pdf File</h1>';
