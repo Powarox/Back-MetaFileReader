@@ -11,6 +11,12 @@ class Metadata {
 
 
 // Return toutes les méta d'un fichier // Extraction Métadonnée
+    /**
+     * Extrait les métadonnées d'un fichier
+     *
+     * @param String localisation du fichier dossier/file.extension
+     * @return Array contient les métadonnées du fichier d'entré
+    */
     public function getMeta($file){
         $data = shell_exec("exiftool -json ".$file);
         $metaData = json_decode($data, true);
