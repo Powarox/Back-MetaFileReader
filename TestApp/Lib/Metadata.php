@@ -9,13 +9,11 @@ class Metadata {
 
     }
 
-
-// Return toutes les méta d'un fichier // Extraction Métadonnée
     /**
      * Extrait les métadonnées d'un fichier
      *
-     * @param String localisation du fichier dossier/file.extension
-     * @return Array contient les métadonnées du fichier d'entré
+     * @param String $file : localisation du fichier dossier/file.extension
+     * @return Array $metaData : contient les métadonnées du fichier d'entré
     */
     public function getMeta($file){
         $data = shell_exec("exiftool -json ".$file);
@@ -93,11 +91,16 @@ class Metadata {
         $this->saveMetaJsonFile($foler, $name, $meta);
     }
 
-
-// Save meta dans un fichier json // Créer un fichier contenant les métadata
+    /**
+     * Sauvegarde un array dans un fichier json
+     *
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+     * @param Array $meta : array contenant les métadonnées à sauvegarder
+    */
     public function saveMetaJsonFile($folder, $name, $meta){
         $data = json_encode($meta);
-        $metaTxt = fopen($folder.'/'.$name.'.json', 'w');
+        $metaTxt = fopen($folder.$name.'.json', 'w');
         fputs($metaTxt, $data);
         fclose($metaTxt);
     }

@@ -42,47 +42,47 @@ function changeStatus(text){
 }
 
 function uploadFiles(event){
-    console.log(droppedFiles);
-
-    event.preventDefault();  // Stop redirect to PHP
-    if(typeof droppedFiles === 'undefined'){
-        console.log('no such files');
-        return false;
-    }
-
-    console.log('uploadFiles');
-    changeStatus("Uploading...");
-
-    console.log("SubmitXHR");
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://dev-21606393.users.info.unicaen.fr/M1/ProjetLibPhp/TestApp/index.php?action=upload');
-    xhr.responseType = 'json';
-
-    let formData = new FormData();
-    for(let i = 0; i < droppedFiles.length; i++) {
-        formData.append('files', droppedFiles[i])
-    }
-
-    xhr.addEventListener('load', function(e) {
-        console.log('xhr response load : ', xhr.response);
-    });
-
-    xhr.upload.addEventListener('progress', function (e) {
-        console.log('Progress Bar : ', e);
-        document.getElementById("progressBar").value = e.loaded  / e.total;
-    });
-
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            window.location = "https://dev-21606393.users.info.unicaen.fr/M1/ProjetLibPhp/TestApp/index.php?action=displayUploadSucces";
-        }
-    }
-
-    xhr.onerror = function () {
-      console.log("** An error occurred during the transaction");
-    };
-
-    xhr.send(formData);
+    // console.log(droppedFiles);
+    //
+    // event.preventDefault();  // Stop redirect to PHP
+    // if(typeof droppedFiles === 'undefined'){
+    //     console.log('no such files');
+    //     return false;
+    // }
+    //
+    // console.log('uploadFiles');
+    // changeStatus("Uploading...");
+    //
+    // console.log("SubmitXHR");
+    // let xhr = new XMLHttpRequest();
+    // xhr.open('POST', 'https://dev-21606393.users.info.unicaen.fr/M1/ProjetLibPhp/TestApp/index.php?action=upload');
+    // xhr.responseType = 'json';
+    //
+    // let formData = new FormData();
+    // for(let i = 0; i < droppedFiles.length; i++) {
+    //     formData.append('files', droppedFiles[i])
+    // }
+    //
+    // xhr.addEventListener('load', function(e) {
+    //     console.log('xhr response load : ', xhr.response);
+    // });
+    //
+    // xhr.upload.addEventListener('progress', function (e) {
+    //     console.log('Progress Bar : ', e);
+    //     document.getElementById("progressBar").value = e.loaded  / e.total;
+    // });
+    //
+    // xhr.onreadystatechange = function(){
+    //     if(xhr.readyState == 4 && xhr.status == 200) {
+    //         window.location = "https://dev-21606393.users.info.unicaen.fr/M1/ProjetLibPhp/TestApp/index.php?action=displayUploadSucces";
+    //     }
+    // }
+    //
+    // xhr.onerror = function () {
+    //   console.log("** An error occurred during the transaction");
+    // };
+    //
+    // xhr.send(formData);
 
     // Affiche la preview
     // setVisiblePreview();

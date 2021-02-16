@@ -28,6 +28,7 @@ class Control {
 
     // Home page
     public function defaultAction(){
+        $this->cleanFolder();
         $this->view->makeHomePage();
     }
 
@@ -40,11 +41,20 @@ class Control {
                 $this->view->displayUploadFailure();
             }
 
-            // Traitement du fichier
-            $this->traitementFile($_FILES['files']);
+            $file = $_FILES['files'];
+            $filename = $file['name'];
+            $tabExt = explode('.', $filename);
+            $extension = $tabExt[1];
+            $name = $tabExt[0];
 
-            // Appel de la Librairie Metadata
-            $this->traitementOnUpload();
+            // Enregistre le pdf & créer une image
+            move_uploaded_file($file["tmp_name"], "App/Files/".$filename);
+            exec('convert  App/Files/'.$filename.'[0]  App/Files/'.$name.'.jpg');
+
+
+            $dir = 'App/Files/';
+            $this->traitementOnUpload($dir, $filename, $name);
+
 
             $this->view->displayUploadSucces();
         }
@@ -53,30 +63,40 @@ class Control {
         }
     }
 
-    public function affichage(){
-        $this->view->affichage();
-    }
-
-    // Rendu
-    public function traitementFile($file){
-        $filename = $file['name'];
-        $tabExt = explode('.', $filename);
-        $extension = $tabExt[1];
-        $name = $tabExt[0];
-
-        // Enregistre le pdf
-        move_uploaded_file($file["tmp_name"], "App/Files/Upload/File/".$filename);
-
-        // Créer une image du pdf et save dans Upload/Images
-        exec('convert  App/Files/Upload/File/'.$filename.'[0]  App/Files/Upload/Img/'.$name.'.jpg');
+    public function affichageResult(){
+        $files = $this->getUploadDocuments();
+        $this->view->affichage($files[0]);
     }
 
 // --- Utilisation de la Librairie php ---
-    public function traitementOnUpload(){
+    public function traitementOnUpload($dir, $filename, $name){
+        $location = $dir . $filename;
 
+        // Extraction des métadonnées
+        $tabMeta = $this->lib->getMeta($location);
+
+        // Sauvegarde des metadonnées dans fichier Json
+        $this->lib->saveMetaJsonFile($dir, $name, $tabMeta);
     }
 
     public function actionOnFile(){
 
+    }
+
+// ################ Utilitaire ################ //
+    public function getUploadDocuments(){
+        $files = scandir(__DIR__ .'/Files');
+        if (!empty($files)) {
+            $elemAutre = array_shift($files);
+            $elemAutre = array_shift($files);
+        }
+        return $files;
+    }
+
+    public function cleanFolder(){
+        $files = $this->getUploadDocuments();
+        foreach($files as $f){
+            unlink(__DIR__.'//Files/'.$f);
+        }
     }
 }

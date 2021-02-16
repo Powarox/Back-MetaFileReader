@@ -36,15 +36,26 @@ class View {
     }
 
     public function displayUploadSucces(){
-        $this->POSTredirect('index.php?action=affichage');
+        $this->POSTredirect('index.php?action=affichageResult');
     }
 
-    public function affichage(){
-        $this->content = '
+    public function affichage($name){
+        $this->content = '<a href="index.php">Retour Upload</a>';
+
+        $this->content .= '
         <section class="previewInfo">
             <h2>Metada of file</h2>
-            <section class="container1">
-                <img src="App/Files/Img/default_pdf_image.jpg" alt="Une image">
+            <section class="container1">';
+
+        if (file_exists('App/Files/'.$name)) {
+            $this->content .= '<img src="App/Files/'.$name.'" alt="Image doc pdf : '.$name.'">';
+        }
+        else {
+            $this->content .= '<img src="App/Img/default_pdf_image.jpg" alt="Une image">';
+        }
+
+
+        $this->content .= '
                 <section class="cont1">
                     <div class="box elem1">
                         <h2>Exif</h2>
