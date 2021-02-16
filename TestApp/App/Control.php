@@ -65,6 +65,10 @@ class Control {
 
     public function affichageResult(){
         $files = $this->getUploadDocuments();
+
+        $meta = $this->lib->openMetaOnJsonFile('App/Files/'.$files[1]);
+        var_dump($meta);
+
         $this->view->affichage($files[0]);
     }
 
