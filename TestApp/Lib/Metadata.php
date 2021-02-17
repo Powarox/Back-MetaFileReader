@@ -102,10 +102,6 @@ class Metadata {
         return $arrayMetaType;
     }
 
-    public function findType
-
-
-
 
     /**
      * Ajoute des métadonnées dans un fichier : pdf, jpg, png, ...
