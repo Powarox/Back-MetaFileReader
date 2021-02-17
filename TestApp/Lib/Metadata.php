@@ -3,11 +3,46 @@
 namespace TestApp\Lib;
 
 class Metadata {
+    protected $file;
+    protected $meta;
+    protected $typeOfFile;
 
 // Constructor
-    public function __construct(){
-
+    public function __construct(){  // $file
+        // $this->file = '$file';
+        // $this->meta = $this->meta($this->file);
+        // $this->typeOfFile = "";     // Pdf, Jpg, Png, ...
     }
+
+    // Extrait l'extension du fichier a traiter
+    public function extractTypeOfFile($meta){
+        $filename = $meta['FileName'];
+        $tab = explode('.', $filename);
+        $this->typeOfFile = $tab[1];
+    }
+
+    // Type potentielle de meta en fonction du fichier
+    public function test(){
+        $potential = array(
+            "pdf" => array("PDF", "XMP", "..."),
+            "jpg" => array("XMP", "IPTC", "geoloc", "..."),
+            "png" => array("XMP", "IPTC", "geoloc", "...")
+        );
+    }
+
+    // Trouve occurence d'un type dans tableau metaType xmp, file, ...
+    // occurence XMP... | ...XMP
+    // "/@?(".$motif.")/im" : occurence n'importe ou dans string
+    public function regex($array, $motif){
+        $pattern = "/@?^(".$motif.")|@?(".$motif.")$/im";
+
+        foreach($array as $key => $value){
+            if(preg_match($pattern, $value)){
+                echo $value . '<br>';
+            }
+        }
+    }
+
 
     /**
      * Extrait les métadonnées d'un fichier
@@ -66,6 +101,10 @@ class Metadata {
         );
         return $arrayMetaType;
     }
+
+    public function findType
+
+
 
 
     /**

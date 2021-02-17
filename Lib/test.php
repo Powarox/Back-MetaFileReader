@@ -21,6 +21,8 @@ echo '<h3>Get Type Meta</h3>';
 $metaType = $lib->getMetadataType($metaFile);
 var_dump($metaType);
 
+regex($metaType, 'file');
+
 echo '<h3>Get Meta Of Type : ...</h3>';
 $metaOfType = $lib->getMetaOfType($metaFile, 'Contributor');
 
@@ -38,6 +40,18 @@ echo '<h3>Suppress Doublons</h3>';
 $metaWithoutDoublons = $lib->suppressMetaDouble($test);
 var_dump($metaWithoutDoublons);
 
+
+
+
+function regex($array, $motif){
+    $pattern = "/@?^(".$motif.")|@?(".$motif.")$/im";
+
+    foreach($array as $key => $value){
+        if(preg_match($pattern, $value)){
+            echo $value . '<br>';
+        }
+    }
+}
 
 
 
