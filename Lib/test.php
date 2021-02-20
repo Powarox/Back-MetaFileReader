@@ -17,44 +17,75 @@ echo '<h3>Extract Meta</h3>';
 $metaFile = $lib->getMeta($file);
 var_dump($metaFile);
 
-echo '<h3>Get Type Meta</h3>';
-$metaType = $lib->getMetadataType($metaFile);
-var_dump($metaType);
+// echo '<h3>Get Type Meta</h3>';
+// $metaType = $lib->getMetadataType($metaFile);
+// var_dump($metaType);
+//
+// regex($metaType, 'file');
+//
+// echo '<h3>Get Meta Of Type : ...</h3>';
+// $metaOfType = $lib->getMetaOfType($metaFile, 'Contributor');
+//
+// echo '<h3>Sort Meta By Key</h3>';
+// $sortMeta = $lib->sortMetaByKey($metaFile);
+// var_dump($sortMeta);
+//
+// $test = array(
+//     'test' => 'ok',
+//     'test' => 'ko',
+//     'try' => 'ok',
+// );
+//
+// echo '<h3>Suppress Doublons</h3>';
+// $metaWithoutDoublons = $lib->suppressMetaDouble($test);
+// var_dump($metaWithoutDoublons);
 
-regex($metaType, 'file');
-
-echo '<h3>Get Meta Of Type : ...</h3>';
-$metaOfType = $lib->getMetaOfType($metaFile, 'Contributor');
-
-echo '<h3>Sort Meta By Key</h3>';
-$sortMeta = $lib->sortMetaByKey($metaFile);
-var_dump($sortMeta);
-
-$test = array(
-    'test' => 'ok',
-    'test' => 'ko',
-    'try' => 'ok',
-);
-
-echo '<h3>Suppress Doublons</h3>';
-$metaWithoutDoublons = $lib->suppressMetaDouble($test);
-var_dump($metaWithoutDoublons);
 
 
+echo '<h3>Get Meta by Type</h3>';
+$metaByType = getMetaSortType($metaFile);
+var_dump($metaByType);
 
 
 function regex($array, $motif){
     $pattern = "/@?^(".$motif.")|@?(".$motif.")$/im";
     $metaTypeOf = [];
-    $res = array();
 
     foreach($array as $key => $value){
-        if(preg_match($pattern, $value)){
-            echo $value . '<br>';
-            // array_push($res, )
+        if(preg_match($pattern, $key)){
+            $metaTypeOf[$key] = $value;
         }
     }
+    return $metaTypeOf;
 }
+
+function getMetaSortType($meta){
+    $type = array('file', 'xmp');
+    $arrayMetaType = [];
+
+    foreach($type as $key){
+        $arrayMetaType[$key] = regex($meta, $key);
+        $meta = array_diff_key($meta, $arrayMetaType[$key]);
+    }
+    $arrayMetaType['other'] = $meta;
+
+    return $arrayMetaType;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

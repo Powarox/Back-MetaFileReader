@@ -98,24 +98,15 @@ class Metadata {
     */
     public function getMetaSortType($meta){
         // Warning need moyen de classer les types
-        $type = array('file', 'xmp')
+        $type = array('file', 'xmp');
+        $arrayMetaType = [];
 
-        // regex sur type de meta
         foreach($type as $key){
-            $this->regex($meta, $motif);
+            $arrayMetaType[$key] = $this->regex($meta, $key);
+            $meta = array_diff_key($meta, $arrayMetaType[$key]);
         }
+        $arrayMetaType['other'] = $meta;
 
-        // Return sous la form :
-        $arrayMetaType = array(
-            'file' => array(
-                'file' => 'test',
-                'source' => 'test'
-            ),
-            'xmp' => array(
-                'XMP' => 'test',
-                'XMPLoc' => 'test'
-            ),
-        );
         return $arrayMetaType;
     }
 
