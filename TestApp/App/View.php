@@ -54,7 +54,9 @@ class View {
             $this->content .= '<img src="App/Img/default_pdf_image.jpg" alt="Une image">';
         }
 
-        echo "<script> function(); </script>";
+        // $data = json_encode($array);
+        // echo "<script> function(); </script>";
+        // var data = JSON.parse(json);
 
         $this->content .= '
                 <section class="cont1">
@@ -62,7 +64,7 @@ class View {
                         <h2>Exif</h2>
                     </div>
                     <div class="box elem2">
-                        <h2>Other</h2>
+                        <h2>Location</h2>
                     </div>
                     <div class="box elem3">
                         <h2>File</h2>
@@ -74,7 +76,7 @@ class View {
                     <h2>XMP</h2>
                 </div>
                 <div class="box">
-                    <h2>Location</h2>
+                    <h2>Other</h2>
                 </div>
                 <div class="box">
                     <h2>Author</h2>
