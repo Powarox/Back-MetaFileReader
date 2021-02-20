@@ -1,6 +1,6 @@
 "use strict"
 
-class MyComponent extends HTMLElement {
+class ActionComponent extends HTMLElement {
     connectedCallback() {
         let list = {'XMP': ['disabled', 'elem2', 'elem3', 'elem4'], 'File': 'Author', 'Exif': 'exiftool', 'Location': 'Directory', 'Other': 'Other'}
 
@@ -47,4 +47,4 @@ class MyComponent extends HTMLElement {
     }
 }
 
-customElements.define('select-meta', MyComponent);
+customElements.define('select-meta', ActionComponent);
