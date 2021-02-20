@@ -45,10 +45,13 @@ var_dump($metaWithoutDoublons);
 
 function regex($array, $motif){
     $pattern = "/@?^(".$motif.")|@?(".$motif.")$/im";
+    $metaTypeOf = [];
+    $res = array();
 
     foreach($array as $key => $value){
         if(preg_match($pattern, $value)){
             echo $value . '<br>';
+            // array_push($res, )
         }
     }
 }

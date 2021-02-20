@@ -35,12 +35,14 @@ class Metadata {
     // "/@?(".$motif.")/im" : occurence n'importe ou dans string
     public function regex($array, $motif){
         $pattern = "/@?^(".$motif.")|@?(".$motif.")$/im";
+        $metaTypeOf = [];
 
         foreach($array as $key => $value){
-            if(preg_match($pattern, $value)){
-                echo $value . '<br>';
+            if(preg_match($pattern, $key)){
+                $metaTypeOf[$key] = $value;
             }
         }
+        return $metaTypeOf;
     }
 
 
@@ -90,14 +92,29 @@ class Metadata {
     /**
      * Trie les métadonnées par type
      *
+     * @param Array $meta : tableau contenant les métadonnées
      * @param String $file : localisation du fichier dossier/file.extension
      * @return Array $arrayMetaType : métadonnées triées par type
     */
-    public function getMetaSortType(){
+    public function getMetaSortType($meta){
         // Warning need moyen de classer les types
+        $type = array('file', 'xmp')
+
+        // regex sur type de meta
+        foreach($type as $key){
+            $this->regex($meta, $motif);
+        }
+
+        // Return sous la form :
         $arrayMetaType = array(
-            'type1' => array('file' => 'test', 'source' => 'test'),
-            'type2' => array('XMP' => 'test', 'XMPLoc' => 'test'),
+            'file' => array(
+                'file' => 'test',
+                'source' => 'test'
+            ),
+            'xmp' => array(
+                'XMP' => 'test',
+                'XMPLoc' => 'test'
+            ),
         );
         return $arrayMetaType;
     }
