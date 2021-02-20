@@ -27,7 +27,7 @@ Appel de la fonction :
 ```
 
 
-
+Suite ...
 
 ```php
 <?php
