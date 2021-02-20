@@ -9,7 +9,8 @@
 
     	<script defer src="App/Js/Upload.js"></script>
         <script defer src="App/Js/Actions.js"></script>
-        <script defer src="App/Js/CustomElements/Component.js"></script>
+        <script defer src="App/Js/CustomElements/PrintComponent.js"></script>
+        <script defer src="App/Js/CustomElements/ActionComponent.js"></script>
 
     	<script src="https://kit.fontawesome.com/646143606b.js" crossorigin="anonymous"></script>
     </head>

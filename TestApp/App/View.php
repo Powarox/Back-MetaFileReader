@@ -39,7 +39,7 @@ class View {
         $this->POSTredirect('index.php?action=affichageResult');
     }
 
-    public function affichage($name){
+    public function affichage($array, $nameImg){
         $this->content = '<a href="index.php">Retour Upload</a>';
 
         $this->content .= '
@@ -47,13 +47,14 @@ class View {
             <h2>Metada of file</h2>
             <section class="container1">';
 
-        if (file_exists('App/Files/'.$name)) {
-            $this->content .= '<img src="App/Files/'.$name.'" alt="Image doc pdf : '.$name.'">';
+        if (file_exists('App/Files/'.$nameImg)) {
+            $this->content .= '<img src="App/Files/'.$nameImg.'" alt="Image doc pdf : '.$nameImg.'">';
         }
         else {
             $this->content .= '<img src="App/Img/default_pdf_image.jpg" alt="Une image">';
         }
 
+        echo "<script> function(); </script>";
 
         $this->content .= '
                 <section class="cont1">

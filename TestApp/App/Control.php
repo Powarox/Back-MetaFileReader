@@ -67,9 +67,12 @@ class Control {
         $files = $this->getUploadDocuments();
 
         $meta = $this->lib->openMetaOnJsonFile('App/Files/'.$files[1]);
-        var_dump($meta);
+        // var_dump($meta);
 
-        $this->view->affichage($files[0]);
+        $metaByType = $this->lib->getMetaByType($meta);
+        var_dump($metaByType);
+
+        $this->view->affichage($metaByType, $files[0]);
     }
 
 // --- Utilisation de la Librairie php ---

@@ -96,7 +96,7 @@ class Metadata {
      * @param String $file : localisation du fichier dossier/file.extension
      * @return Array $arrayMetaType : métadonnées triées par type
     */
-    public function getMetaSortType($meta){
+    public function getMetaByType($meta){
         // Warning need moyen de classer les types
         $type = array('file', 'xmp');
         $arrayMetaType = [];
