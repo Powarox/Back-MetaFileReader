@@ -103,3 +103,33 @@ class View {
         die;
     }
 }
+
+
+
+
+
+// $this->content .= '
+//         <section class="cont1">
+//             <div class="box elem1">
+//                 <h2>Exif</h2>
+//             </div>
+//             <div class="box elem2">
+//                 <h2>Location</h2>
+//             </div>
+//             <div class="box elem3">
+//                 <h2>File</h2>
+//             </div>
+//         </section>
+//     </section>
+//     <section class="container2">
+//         <div class="box">
+//             <h2>XMP</h2>
+//         </div>
+//         <div class="box">
+//             <h2>Other</h2>
+//         </div>
+//         <div class="box">
+//             <h2>Author</h2>
+//         </div>
+//     </section>
+// </section>';
