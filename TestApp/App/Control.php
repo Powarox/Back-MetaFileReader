@@ -70,7 +70,7 @@ class Control {
         // var_dump($meta);
 
         $metaByType = $this->lib->getMetaByType($meta);
-        var_dump($metaByType);
+        // var_dump($metaByType);
 
         $this->view->affichage($metaByType, $files[0]);
     }

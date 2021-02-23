@@ -58,31 +58,54 @@ class View {
         // echo "<script> function(); </script>";
         // var data = JSON.parse(json);
 
-        $this->content .= '
-                <section class="cont1">
-                    <div class="box elem1">
-                        <h2>Exif</h2>
-                    </div>
-                    <div class="box elem2">
-                        <h2>Location</h2>
-                    </div>
-                    <div class="box elem3">
-                        <h2>File</h2>
-                    </div>
-                </section>
-            </section>
-            <section class="container2">
-                <div class="box">
-                    <h2>XMP</h2>
-                </div>
-                <div class="box">
-                    <h2>Other</h2>
-                </div>
-                <div class="box">
-                    <h2>Author</h2>
-                </div>
-            </section>
-        </section>';
+                $this->content .= '<section class="cont1">';
+                    $this->content .= '<div class="box elem1">';
+                    $this->content .= '<h2>Exif</h2>';
+                    $this->content .= '</div>';
+
+                    $this->content .= '<div class="box elem2">';
+                    $this->content .= '<h2>Location</h2>';
+                    $this->content .= '</div>';
+
+                    $this->content .= '<div class="box elem3">';
+                    $file = array_keys($array)[0];
+                    $this->content .= '<h2>' . $file . '</h2>';
+                    foreach($array[$file] as $key => $value){
+                        $this->content .= '<p><strong>' . $key . ' : </strong>' . $value . '</p>';
+                    }
+
+                    $this->content .= '</div>';
+
+                $this->content .= '</section>';
+            $this->content .= '</section>';
+
+            $this->content .= '<section class="container2">';
+                $this->content .= '<div class="box">';
+                $xmp = array_keys($array)[1];
+                $this->content .= '<h2>' . $xmp . '</h2>';
+                foreach($array[$xmp] as $key => $value){
+                    $this->content .= '<p><strong>' . $key . ' : </strong>' . $value . '</p>';
+                }
+
+                $this->content .= '</div>';
+
+                $this->content .= '<div class="box">';
+                $other = array_keys($array)[2];
+                $this->content .= '<h2>' . $other . '</h2>';
+                foreach($array[$other] as $key => $value){
+                    if($key != 'Contributor'){
+                        $this->content .= '<p><strong>' . $key . ' : </strong>' . $value . '</p>';
+                    }
+                }
+
+                $this->content .= '</div>';
+
+                $this->content .= '<div class="box">';
+                $this->content .= '<h2>Author</h2>';
+                $this->content .= '</div>';
+            $this->content .= '</section>';
+        $this->content .= '</section>';
+
 
         $this->content .= '
             <section class="previewAction">
