@@ -72,8 +72,25 @@ function getMetaSortType($meta){
     return $arrayMetaType;
 }
 
+$array = array(
+    'file' => array(
+        'elem' => 'coucou'
+    ),
+    'XMP' => array(
+        'elem1' => 'coucou1',
+        'elem2' => 'coucou2',
+        'elem3' => 'coucou3'
+    )
+);
+
+$xmp = array_keys($array)[1];
+var_dump($xmp);
+var_dump($array[$xmp]);
 
 
+foreach($array[$xmp] as $key => $value){
+    echo '<p>' . $key . ' : ' . $value . '</p>';
+}
 
 
 
