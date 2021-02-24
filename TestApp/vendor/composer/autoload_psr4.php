@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Metatada\\' => array($vendorDir . '/robindev/metadata/src'),
+    'Metadata\\' => array($vendorDir . '/robindev/metadata/src'),
 );

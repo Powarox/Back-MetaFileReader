@@ -9,12 +9,12 @@ class ComposerStaticInit90a1f050dc465e83a4222ea9969c00b0
     public static $prefixLengthsPsr4 = array (
         'M' => 
         array (
-            'Metatada\\' => 9,
+            'Metadata\\' => 9,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Metatada\\' => 
+        'Metadata\\' => 
         array (
             0 => __DIR__ . '/..' . '/robindev/metadata/src',
         ),

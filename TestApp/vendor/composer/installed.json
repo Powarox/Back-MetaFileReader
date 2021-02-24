@@ -2,28 +2,28 @@
     "packages": [
         {
             "name": "robindev/metadata",
-            "version": "v1.0",
-            "version_normalized": "1.0.0.0",
+            "version": "v1.1",
+            "version_normalized": "1.1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Powarox2159/robindev-metadata.git",
-                "reference": "9f40b78ad5278fdf73e20004213c26a1a81b7a48"
+                "reference": "8dc20c4b6d4ec4a6892c51993a6477033458d502"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Powarox2159/robindev-metadata/zipball/9f40b78ad5278fdf73e20004213c26a1a81b7a48",
-                "reference": "9f40b78ad5278fdf73e20004213c26a1a81b7a48",
+                "url": "https://api.github.com/repos/Powarox2159/robindev-metadata/zipball/8dc20c4b6d4ec4a6892c51993a6477033458d502",
+                "reference": "8dc20c4b6d4ec4a6892c51993a6477033458d502",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2021-02-23T20:04:14+00:00",
+            "time": "2021-02-24T17:02:06+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Metatada\\": "src/"
+                    "Metadata\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -54,7 +54,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Powarox2159/robindev-metadata/issues",
-                "source": "https://github.com/Powarox2159/robindev-metadata/tree/v1.0"
+                "source": "https://github.com/Powarox2159/robindev-metadata/tree/v1.1"
             },
             "install-path": "../robindev/metadata"
         }
