@@ -18,7 +18,7 @@ Dernière version : 1.1.0
 ```json
 {
     "require": {
-        "robindev/metadata": "^1.1.0"
+        "robindev/metadata": "^1.2.0"
     }
 }
 ```
