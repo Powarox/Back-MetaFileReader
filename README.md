@@ -23,6 +23,7 @@ Dernière version : 1.1.0
 }
 ```
 
+- enfin taper : composer update -W dans le terminal
 
 
 
