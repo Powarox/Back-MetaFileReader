@@ -10,6 +10,8 @@ Si cela ne télécharge pas la dernière version :
 - aller dans composer.json
 - puis modifier le numéro de verison que vous souhaiter obtenir
 
+Dernière version : 1.1.0
+
 ```json
 {
     "require": {
