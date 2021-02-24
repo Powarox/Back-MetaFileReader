@@ -2,12 +2,10 @@
 
 namespace TestApp;
 
-require './vendor/autoload.php';
 require_once('Loader/Autoload.php');
-
-
 spl_autoload_register('TestApp\Loader\Autoload::monAutoload');
 
+require './vendor/autoload.php';
 
 use TestApp\App\Control;
 use TestApp\Lib\Metadata;

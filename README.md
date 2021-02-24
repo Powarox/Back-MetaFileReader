@@ -13,12 +13,12 @@ Si cela ne télécharge pas la dernière version :
 - aller dans composer.json
 - puis modifier le numéro de verison que vous souhaiter obtenir
 
-Dernière version : 1.1.0
+Dernière version : 1.3.0
 
 ```json
 {
     "require": {
-        "robindev/metadata": "^1.2.0"
+        "robindev/metadata": "^1.3.0"
     }
 }
 ```
