@@ -1,0 +1,74 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "f8e2a9d944b26464fd54cba5f1c2ee3d",
+    "packages": [
+        {
+            "name": "robindev/metadata",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Powarox2159/robindev-metadata.git",
+                "reference": "9f40b78ad5278fdf73e20004213c26a1a81b7a48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Powarox2159/robindev-metadata/zipball/9f40b78ad5278fdf73e20004213c26a1a81b7a48",
+                "reference": "9f40b78ad5278fdf73e20004213c26a1a81b7a48",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Metatada\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Powarox2159",
+                    "email": "moriniere.robin1877@gmail.com",
+                    "role": "Manager"
+                },
+                {
+                    "name": "Moriniere Robin",
+                    "email": "21606393@etu.unicaen.fr",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Seck Mohamed Lamine",
+                    "email": "21711412@etu.unicaen.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "librairie php pour manipuler les m\u0000tadonn\u0000es",
+            "homepage": "https://github.com/Powarox2159/robindev-metadata",
+            "keywords": [
+                "metadata"
+            ],
+            "support": {
+                "issues": "https://github.com/Powarox2159/robindev-metadata/issues",
+                "source": "https://github.com/Powarox2159/robindev-metadata/tree/v1.0"
+            },
+            "time": "2021-02-23T20:04:14+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
