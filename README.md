@@ -2,6 +2,35 @@
 Projet Tutoré bibliothèque PHP
 
 
+Installation de la librairie :
+
+Cmd : composer require robindev/metadata
+
+Si cela ne télécharge pas la dernière version :
+- aller dans composer.json
+- puis modifier le numéro de verison que vous souhaiter obtenir
+
+```json
+{
+    "require": {
+        "robindev/metadata": "^1.1.0"
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Une fonction pour extraire les métadonnées d'un fichier
 
 ```php
