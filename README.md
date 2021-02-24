@@ -4,6 +4,9 @@ Projet Tutoré bibliothèque PHP
 
 Installation de la librairie :
 
+require : "php": ">=5.3.0"
+
+
 Cmd : composer require robindev/metadata
 
 Si cela ne télécharge pas la dernière version :

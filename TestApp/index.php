@@ -2,18 +2,18 @@
 
 namespace TestApp;
 
-require_once('Loader/Autoload.php');
 require './vendor/autoload.php';
+require_once('Loader/Autoload.php');
+
 
 spl_autoload_register('TestApp\Loader\Autoload::monAutoload');
-
-$onlineLib = new \Metadata\Metadata();
 
 
 use TestApp\App\Control;
 use TestApp\Lib\Metadata;
 
 $lib = new Lib\Metadata();
+$onlineLib = new \Metadata\Metadata();
 
-$control = new App\Control($lib);
+$control = new App\Control($onlineLib);
 $control->execute();
