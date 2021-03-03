@@ -1,3 +1,3 @@
 <?php
 
-namespace TestApp\Lib;
+namespace TestApp\Lib\Class;

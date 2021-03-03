@@ -1,0 +1,101 @@
+
+Warning : Ajouter plus de fonction a la lib et mieux découpé celle-ci en class !
+
+
+
+1. Traitement Meta :
+
+option command ExifTool :
+    -g
+    -g1
+    -json
+
+    cours s1 : https://ensweb.users.info.unicaen.fr/cours/idc-pwa/04/
+
+
+
+
+2. Modification Meta d'un fichier :
+    exmple : https://exiftool.org/forum/index.php?topic=5484.0
+
+
+
+
+3. Regrouper les appels de fonctions pour simplifier l'utilisation par user :
+
+    $meta = $lib->openMetaOnJsonFile($filepath);
+    $metaByType = $lib->getMetaByType($meta)
+
+    remplacer par :
+
+    $meta = $lib->getMeta($filepath)
+                ou
+    $metaByType = $lib->getMetaByType($filepath, 'XMP-dc')
+
+
+
+
+
+
+
+
+Mail :
+
+
+mes réponses à vos questions :
+Questions :
+1.
+Nous aurions tout d'abord voulu savoir si l’avancement de notre projet était toujours en raccord avec les consignes demandées.
+
+oui et non
+oui car la direction est bonne.
+non car pour l’instant votre lib est plus que légère, elle ne fait pas encore grand chose et n’exploite pas tout à fait exiftool au mieux.
+
+Quelques pistes :
+- revoyez le tp sur les métadonées https://ensweb.users.info.unicaen.fr/cours/idc-pwa/04/
+J’y suggère d’utiliser les options -g ou -g1 (les autres ne serviront pas à priori pour le projet) et vous pouvez les coupler à l’option -json
+Ces 2 options permettent de trier les métadonnées par type, chose que votre système ne pourra pas faire en l’état actuel. La preuve avec l’image que j’ai déposé la colonne XMP ne contient qu’une seule info alors qu’il y en a beaucoup plus.
+Je joins une image pour tester/expérimenter sur les métadonnées (c’est celle que j’ai uploadé sur votre site)
+
+- il faudra multiplier les possibilités d’utilisation. Dans votre appli d’exemple il faut 2 lignes :
+        $meta = $this->lib->openMetaOnJsonFile($filepath);
+        $metaByType = $this->lib->getMetaByType($meta);
+pourquoi avoir besoin de 2 lignes ?
+je voudrais faire juste
+$metas = $this->lib->getMeta($filepath)
+ou
+$metas = $this->lib->getMetaByType($filepath, 'XMP-dc')  (sachant que avec l’option -g1 vous avez directement accès à tout le Dublin Core de XMP
+
+- en l’état votre lib fait un shell_exec de exiftool -json, ce qui suppose que le serveur a exiftool d’installé et c’est bien le cas sur nos serveurs users.info.unicaen.fr, mais si je veux utiliser votre bibliothèque sur un autre serveur alors je n’ai peut-être (et même surement) pas les droits pour installer exiftool. Il serait donc pas mal d’intégrer l'utilitaire dans votre bibliothèque et d’avoir un moyen de configurer le système pour que la bibliothèque utilise la version d’exiftool que vous fournissez ou bien celle installée sur le serveur (et dans ce cas donner son path)
+
+
+
+
+2.
+Nous aurions voulu savoir si vous pouviez nous donner quelques pistes pour modifier les métadonnées d’un fichier. Nous n’avons pas trouvé de moyen  pour faire cela sans devoir utiliser d’autres librairies php.
+Nous cherchons donc un moyen de modifier (ou de créer une nouvelle version du fichier) à partir d’un fichier json contenant les métadonnées.
+
+sell_exec(“exiftool -json … …”);
+
+Là aussi regarder à nouveau le TP, avec la 3ème partie : inscription dans l’image
+Le plus simple est de créer un fichier JSON qui a le même format que ce que vous avez lors de l’extraction et de le donner en argument à la commande exiftool
+Il y a un exemple sur ce post de forum (2e réponde de Phil Harvey) https://exiftool.org/forum/index.php?topic=5484.0
+
+
+3.
+Ensuite nous aurions voulu savoir quel type de fichier notre librairie doit pouvoir traiter.
+	• PDF  →  "PDF" / "XMP" / ...
+	• PNG   → "XMP" /  "IPTC" / "geoloc" / ...
+	• JPG     → "XMP" /  "IPTC" / "geoloc" / ...
+	• … ?
+
+
+Commencez avec  les images  et  les groupes de base que vous pouvez trouver dans l’image jointe (éventuellement vous pouvez laisser ICC de côté)
+
+ Mais aussi les types de métadonnées que devons extraire, et surtout par quel moyen pouvons-nous les différencier ?
+
+cf ma réponse à la question 1 pour les filtrer par groupe
+
+ Pour le moment nous utilisons des expressions régulières avec preg_match pour extraire et trier les méta par type. Mais cela nécessite d’inscrire en dur les différents types de métadonnées possibles (xmp, iptc, ect…)
+
+cf question 1
