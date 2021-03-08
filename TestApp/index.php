@@ -13,5 +13,5 @@ use TestApp\Lib\Metadata;
 $lib = new Lib\Metadata();
 $onlineLib = new \Metadata\Metadata();
 
-$control = new App\Control($onlineLib);
+$control = new App\Control($lib);
 $control->execute();

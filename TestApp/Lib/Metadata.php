@@ -30,6 +30,12 @@ class Metadata {
         );
     }
 
+    public function typeTest($filePath){
+        $data = shell_exec("exiftool -g -json ".$filePath);
+        $metaData = json_decode($data, true);
+        return $metaData;
+    }
+
     // Trouve occurence d'un type dans tableau metaType xmp, file, ...
     // occurence XMP... | ...XMP
     // "/@?(".$motif.")/im" : occurence n'importe ou dans string
@@ -54,6 +60,19 @@ class Metadata {
     */
     public function getMeta($file){
         $data = shell_exec("exiftool -json ".$file);
+        $metaData = json_decode($data, true);
+        return $metaData[0];
+    }
+
+
+    /**
+     * Extrait les métadonnées d'un fichier en les triant par type
+     *
+     * @param String $filePath : localisation du fichier dossier/file.extension
+     * @return Array $metaData : contient les métadonnées du fichier d'entré
+    */
+    public function getMetaByType($filePath){
+        $data = shell_exec("exiftool -g -json ".$filePath);
         $metaData = json_decode($data, true);
         return $metaData[0];
     }
@@ -89,26 +108,26 @@ class Metadata {
     }
 
 
-    /**
-     * Trie les métadonnées par type
-     *
-     * @param Array $meta : tableau contenant les métadonnées
-     * @param String $file : localisation du fichier dossier/file.extension
-     * @return Array $arrayMetaType : métadonnées triées par type
-    */
-    public function getMetaByType($meta){
-        // Warning need moyen de classer les types
-        $type = array('file', 'xmp');
-        $arrayMetaType = [];
-
-        foreach($type as $key){
-            $arrayMetaType[$key] = $this->regex($meta, $key);
-            $meta = array_diff_key($meta, $arrayMetaType[$key]);
-        }
-        $arrayMetaType['other'] = $meta;
-
-        return $arrayMetaType;
-    }
+    // /**
+    //  * Trie les métadonnées par type
+    //  *
+    //  * @param Array $meta : tableau contenant les métadonnées
+    //  * @param String $file : localisation du fichier dossier/file.extension
+    //  * @return Array $arrayMetaType : métadonnées triées par type
+    // */
+    // public function getMetaByType($meta){
+    //     // Warning need moyen de classer les types
+    //     $type = array('file', 'xmp');
+    //     $arrayMetaType = [];
+    //
+    //     foreach($type as $key){
+    //         $arrayMetaType[$key] = $this->regex($meta, $key);
+    //         $meta = array_diff_key($meta, $arrayMetaType[$key]);
+    //     }
+    //     $arrayMetaType['other'] = $meta;
+    //
+    //     return $arrayMetaType;
+    // }
 
 
     /**

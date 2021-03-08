@@ -35,9 +35,9 @@ class Control {
     // Upload : récup files
     public function upload(){
         // Vérifier si le formulaire a été soumis
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Upload vide
-            if ($_FILES['files']['error'] != 0) {
+            if($_FILES['files']['error'] != 0){
                 $this->view->displayUploadFailure();
             }
 
@@ -65,25 +65,31 @@ class Control {
 
     public function affichageResult(){
         $files = $this->getUploadDocuments();
+        $folder = 'App/Files/';
 
-        $meta = $this->lib->openMetaOnJsonFile('App/Files/'.$files[1]);
-        // var_dump($meta);
+        $filePath = $folder.$files[2];
+        $filePathImg = $folder.$files[0];
+        $filePathJson = $folder.$files[1];
 
-        $metaByType = $this->lib->getMetaByType($meta);
+        $meta = $this->lib->openMetaOnJsonFile($filePathJson);
+        var_dump($meta);
+
+        // $metaByType = $this->lib->getMetaByType($meta);
         // var_dump($metaByType);
 
-        $this->view->affichage($metaByType, $files[0]);
+        $this->view->affichage($meta, $files[0]);
     }
 
 // --- Utilisation de la Librairie php ---
     public function traitementOnUpload($dir, $filename, $name){
-        $location = $dir . $filename;
+        $filePath = $dir . $filename;
 
         // Extraction des métadonnées
-        $tabMeta = $this->lib->getMeta($location);
+        $meta = $this->lib->getMetaByType($filePath);
+        // var_dump($meta);
 
         // Sauvegarde des metadonnées dans fichier Json
-        $this->lib->saveMetaJsonFile($dir, $name, $tabMeta);
+        $this->lib->saveMetaJsonFile($dir, $name, $meta);
     }
 
     public function actionOnFile(){
@@ -99,6 +105,40 @@ class Control {
         }
         return $files;
     }
+
+    // public function getFile($files, $type){
+    //     foreach($files as $f){
+    //         $array = explode('.', $f);
+    //         if($array[1] == $type){
+    //             return $f;
+    //         }
+    //     }
+    // }
+    //
+    // public function findPreviewPdf($files){
+    //     foreach($files as $f){
+    //         $array = explode('.', $f);
+    //         if($array[0] == 'previewPdf'){
+    //             return true;
+    //         }
+    //         else{
+    //             return false;
+    //         }
+    //     }
+    // }
+    //
+    // // Upload File pdf or img
+    // if($this->findPreviewPdf($files)){
+    //     $filePath = 'App/Files/'.$files[1];
+    //     $filePathImg = 'App/Files/'.$files[2];
+    //     $filePathJson = 'App/Files/'.$files[0];
+    // }
+    // else{
+    //     $filePath = 'App/Files/'.$files[0];
+    //     $filePathImg = $filePath;
+    //     $filePathJson = 'App/Files/'.$files[1];
+    // }
+
 
     public function cleanFolder(){
         $files = $this->getUploadDocuments();
