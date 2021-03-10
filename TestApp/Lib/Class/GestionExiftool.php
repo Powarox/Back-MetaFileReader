@@ -26,3 +26,29 @@ class GestionExiftool {
 // Trouver moyen de configurer systeme pour que la lib use soit
     // version fournis dans la lib
     // version dispo sur serv
+
+
+// https://github.com/exiftool/exiftool
+
+// Composer.json
+    // {
+    //     ...
+    //     "repositories": [
+    //         ...
+    //         {
+    //             "type": "package",
+    //             "package": {
+    //                 "name": "philharvey/exiftool",
+    //                 "version": "10.75",
+    //                 "dist": {
+    //                     "url": "https://sno.phy.queensu.ca/~phil/exiftool/Image-ExifTool-10.75.tar.gz",
+    //                     "type": "tar"
+    //                 }
+    //             }
+    //         }
+    //     ],
+    //     "require": {
+    //         ...
+    //         "philharvey/exiftool": "10.*"
+    //     }
+    // }
