@@ -16,8 +16,11 @@ class Control {
             if(method_exists($this->view, $action)){
                 $this->view->$action();
             }
-            else {
+            else if(method_exists($this, $action)){
                 $this->$action();
+            }
+            else {
+                $this->defaultAction();
             }
         }
         else {
@@ -34,6 +37,8 @@ class Control {
 
     // Upload : récup files
     public function upload(){
+        $this->cleanFolder();
+
         // Vérifier si le formulaire a été soumis
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Upload vide
@@ -43,18 +48,18 @@ class Control {
 
             $file = $_FILES['files'];
             $filename = $file['name'];
+            $fileType = $file['type'];
             $tabExt = explode('.', $filename);
-            $extension = $tabExt[1];
-            $name = $tabExt[0];
+            $tabType = explode('/', $fileType);
 
-            // Enregistre le pdf & créer une image
             move_uploaded_file($file["tmp_name"], "App/Files/".$filename);
-            exec('convert  App/Files/'.$filename.'[0]  App/Files/'.$name.'.jpg');
 
+            if($tabType[0] == 'application'){
+                exec('convert  App/Files/'.$filename.'[0]  App/Files/'.$tabExt[0].'.jpg');
+            }
 
             $dir = 'App/Files/';
-            $this->traitementOnUpload($dir, $filename, $name);
-
+            $this->traitementOnUpload($dir, $filename, $tabExt[0]);
 
             $this->view->displayUploadSucces();
         }
@@ -67,14 +72,13 @@ class Control {
         $files = $this->getUploadDocuments();
         $folder = 'App/Files/';
 
-        $filePath = $folder.$files[2];
-        $filePathImg = $folder.$files[0];
-        $filePathJson = $folder.$files[1];
+        $filePathImg = $files['image'];
+        $filePathJson = $folder.$files['text'];
 
         $meta = $this->lib->openMetaOnJsonFile($filePathJson);
         asort($meta);
 
-        $this->view->affichage($meta, $files[0]);
+        $this->view->affichage($meta, $filePathImg);
     }
 
 // --- Utilisation de la Librairie php ---
@@ -99,42 +103,19 @@ class Control {
             $elemAutre = array_shift($files);
             $elemAutre = array_shift($files);
         }
-        return $files;
+        $result = $this->getTypeFiles($files);
+        return $result;
     }
 
-    // public function getFile($files, $type){
-    //     foreach($files as $f){
-    //         $array = explode('.', $f);
-    //         if($array[1] == $type){
-    //             return $f;
-    //         }
-    //     }
-    // }
-    //
-    // public function findPreviewPdf($files){
-    //     foreach($files as $f){
-    //         $array = explode('.', $f);
-    //         if($array[0] == 'previewPdf'){
-    //             return true;
-    //         }
-    //         else{
-    //             return false;
-    //         }
-    //     }
-    // }
-    //
-    // // Upload File pdf or img
-    // if($this->findPreviewPdf($files)){
-    //     $filePath = 'App/Files/'.$files[1];
-    //     $filePathImg = 'App/Files/'.$files[2];
-    //     $filePathJson = 'App/Files/'.$files[0];
-    // }
-    // else{
-    //     $filePath = 'App/Files/'.$files[0];
-    //     $filePathImg = $filePath;
-    //     $filePathJson = 'App/Files/'.$files[1];
-    // }
-
+    public function getTypeFiles($array){
+        $result = [];
+        foreach($array as $elem){
+            $tab = mime_content_type('App/Files/'.$elem);
+            $res = explode('/', $tab);
+            $result[$res[0]] = $elem;
+        }
+        return $result;
+    }
 
     public function cleanFolder(){
         $files = $this->getUploadDocuments();

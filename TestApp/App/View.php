@@ -17,7 +17,7 @@ class View {
     }
 
     public function displayUploadSucces(){
-        $this->POSTredirect('index.php?action=affichageResult');
+        $this->POSTredirect('index.php?action=affichageResult#fileLabelText');
     }
 
     public function affichage($data, $nameImg){
