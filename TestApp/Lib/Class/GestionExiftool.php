@@ -4,6 +4,19 @@ namespace TestApp\Lib\Class;
 
 class GestionExiftool {
 
+    public function exiftoolExist(){
+        return true;
+    }
+
+    public function pathExitftoolOnServer(){
+        $exifPath = '';
+        return $exifPath;
+    }
+
+    public function installExiftool(){
+        return true;
+    }
+
 }
 
 // Verifier si exiftool est installé sur le serveur
