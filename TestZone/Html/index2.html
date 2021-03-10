@@ -11,7 +11,7 @@
     	<script src="https://kit.fontawesome.com/646143606b.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <header>
+        <header id="topHeader">
             <nav class="menu">
                 <a href="#">Home</a>
                 <a href="#">Actions</a>
@@ -19,11 +19,13 @@
             </nav>
 
             <h1>Test Librairie PHP ...name...</h1>
+
+            <a id="arrow" href="#topHeader"><i class="fas fa-chevron-up"></i></a>
         </header>
 
         <main>
 <!-- Section upload permettant le drag & drop -->
-            <section class="upload">
+            <!-- <section class="upload">
                 <form id="dropFileForm" action="" method="post" onsubmit="uploadFiles(event)">
     	            <div id="dropFileDiv"
     	            ondragover="overrideDefault(event);fileHover();" ondragenter="overrideDefault(event);fileHover();" ondragleave="overrideDefault(event);fileHoverEnd();" ondrop="overrideDefault(event);fileHoverEnd();
@@ -43,6 +45,65 @@
 
     	            <input id="uploadButton" type="submit" value="Upload">
     	        </form>
+            </section> -->
+
+            <section class="previewInfo">
+                <!-- <img src="default_pdf_image.jpg" alt="Une image"> -->
+                <nav class="sectionMenu">
+                    <a href="#">File</a>
+                    <a href="#">XMP</a>
+                    <a href="#">IPC</a>
+                    <a href="#">IPC</a>
+                    <a href="#">Other</a>
+                </nav>
+            </section>
+
+            <section class="previewMeta">
+                <div class="card" id="file_box">
+                    <h2>File</h2>
+
+                    <ul>
+                        <li id="elemP">
+                            <p><strong>File</strong></p>
+                            <p>des information ici</p>
+                        </li>
+                        <li id="elemI">
+                            <p><strong>File</strong></p>
+                            <p>des information ici</p>
+                        </li>
+                        <li id="elemP">
+                            <p><strong>File</strong></p>
+                            <p>des information ici des information ici des information ici des information ici des information ici</p>
+                        </li>
+                        <li id="elemI">
+                            <p><strong>File</strong></p>
+                            <p>des information ici</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>XMP</h2>
+
+                    <ul>
+                        <li id="elemP">
+                            <p><strong>File</strong></p>
+                            <p>des information ici</p>
+                        </li>
+                        <li id="elemI">
+                            <p><strong>File</strong></p>
+                            <p>des information ici</p>
+                        </li>
+                        <li id="elemP">
+                            <p><strong>File</strong></p>
+                            <p>des information ici</p>
+                        </li>
+                        <li id="elemI">
+                            <p><strong>File</strong></p>
+                            <p>des information ici</p>
+                        </li>
+                    </ul>
+                </div>
             </section>
         </main>
 

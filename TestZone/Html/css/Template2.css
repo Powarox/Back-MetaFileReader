@@ -1,9 +1,28 @@
 body {
     margin: 0;
-    font-family: sans-serif;
     color: #333333;
+    font-family: sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
+ul {
+    padding: 0 10px;
+    list-style-type: none;
+}
+
+#arrow {
+    right: 30px;
+    bottom: 30px;
+    position: fixed;
+    color: #348AF4;
+    font-size: 30px;
+}
+
+
+/* ----- Header ----- */
 .menu {
     padding: 0 50px;
     display: flex;
@@ -13,12 +32,11 @@ body {
 
 .menu a {
     color: #333;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
-    margin: 20px 20px;
+    margin: 15px 20px;
     padding: 10px;
     border: 2px solid #348AF4;
-    text-decoration: none;
     transition: 0.5s;
 }
 
@@ -46,7 +64,7 @@ main {
 
 
 
-
+/* ----- Upload Section ----- */
 .upload {
 	margin: 75px 0;
 	display: flex;
@@ -59,8 +77,8 @@ main {
 }
 
 .fileHover{
-	box-shadow: 0 0 10em #fe4a49;
-	border: 7px dashed #fe4a49;
+	box-shadow: 0 0 2em #fe4a49;
+	border: 2px dashed #fe4a49;
 }
 
 #dropFileDiv {
@@ -93,6 +111,7 @@ main {
 #dropFileDiv label:hover{
     color: #499F68;
     border: 2px solid #499F68;
+    transition: 0.9s;
 }
 
 #progressBar {
@@ -119,25 +138,63 @@ main {
 	color: white;
     background: #499F68;
     border: 3px solid #499F68;
+    transition: 0.5s;
 }
 
 
 
+/* ----- Preview Info Section ----- */
+.previewInfo {
+    /* border-top: 2px solid #333; */
+    margin: 0 15%;
+}
+
+.previewInfo img {
+    width: 350px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.previewInfo .sectionMenu {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.previewInfo .sectionMenu a {
+    color: #348AF4;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+.previewInfo .sectionMenu a:hover {
+    border-radius: 5px;
+    background: #DDD;
+}
 
 
 
+/* ----- Preview Meta Section ----- */
+.previewMeta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 
+.previewMeta .card {
+    margin: 20px;
+    padding: 0 20px;
+    border: 2px solid #DDD;
+    border-radius: 10px;
+}
 
+.previewMeta .card ul li {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border-top: 1px solid #DDD;
+}
 
-
-
-
-
-
-
-
-
-
+#elemP {
+    background: #EEE;
+}
 
 
 
