@@ -15,8 +15,16 @@
     	<script src="https://kit.fontawesome.com/646143606b.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <header>
+        <header id="topHeader">
+            <nav class="menu">
+                <a href="#">Home</a>
+                <a href="#">Actions</a>
+                <a href="#">Other</a>
+            </nav>
+
             <h1><?php echo $this->title ?></h1>
+
+            <a id="arrow" href="#topHeader"><i class="fas fa-chevron-up"></i></a>
         </header>
 
         <main>
