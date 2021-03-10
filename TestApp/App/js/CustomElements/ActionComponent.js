@@ -1,5 +1,9 @@
 "use strict"
 
+// $data = json_encode($array);
+// echo "<script> function(); </script>";
+// var data = JSON.parse(json);
+
 class ActionComponent extends HTMLElement {
     connectedCallback() {
         let list = {'XMP': ['disabled', 'elem2', 'elem3', 'elem4'], 'File': 'Author', 'Exif': 'exiftool', 'Location': 'Directory', 'Other': 'Other'}

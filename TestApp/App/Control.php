@@ -72,10 +72,7 @@ class Control {
         $filePathJson = $folder.$files[1];
 
         $meta = $this->lib->openMetaOnJsonFile($filePathJson);
-        var_dump($meta);
-
-        // $metaByType = $this->lib->getMetaByType($meta);
-        // var_dump($metaByType);
+        asort($meta);
 
         $this->view->affichage($meta, $files[0]);
     }
@@ -86,7 +83,6 @@ class Control {
 
         // Extraction des métadonnées
         $meta = $this->lib->getMetaByType($filePath);
-        // var_dump($meta);
 
         // Sauvegarde des metadonnées dans fichier Json
         $this->lib->saveMetaJsonFile($dir, $name, $meta);

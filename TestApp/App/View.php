@@ -4,31 +4,12 @@ namespace TestApp\App;
 
 class View {
     public function __construct(){
-        $this->title = "Test Librairie PHP ...name...";
-        $this->content = "content a definir";
+        $this->title = 'Test Librairie PHP ...name...';
+        $this->content = '';
     }
 
     public function makeHomePage(){
-        $this->content = '
-        <section class="upload">
-            <form id="dropFileForm" action="index.php?action=upload" method="post" onsubmit="uploadFiles(event)" enctype="multipart/form-data">
-                <div id="dropFileDiv"
-                ondragover="overrideDefault(event);fileHover();" ondragenter="overrideDefault(event);fileHover();" ondragleave="overrideDefault(event);fileHoverEnd();" ondrop="overrideDefault(event);fileHoverEnd();
-                      addFiles(event);">
-                    <label for="fileInput" id="fileLabel">
-                        <i class="fas fa-upload"></i>
-                        <span id="fileLabelText">
-                          Choose a file
-                        </span>
-                        <span id="uploadStatus"></span>
-                        <i class="fas fa-upload"></i>
-                    </label>
-                    <input type="file" name="files" id="fileInput" onchange="addFiles(event)">
-                </div>
-                <progress id="progressBar"></progress>
-                <input id="uploadButton" type="submit" value="Upload">
-            </form>
-        </section>';
+        $this->content = '';
     }
 
     public function displayUploadFailure(){
@@ -39,71 +20,71 @@ class View {
         $this->POSTredirect('index.php?action=affichageResult');
     }
 
-    public function affichage($array, $nameImg){
-        $this->content = '<a href="index.php">Retour Upload</a>';
+    public function affichage($data, $nameImg){
+        // $this->content = '<a href="index.php">Retour Upload</a>';
 
-        $this->content .= '
-        <section class="previewInfo">
-            <h2>Metada of file</h2>
-            <section class="container1">';
-
-        if (file_exists('App/Files/'.$nameImg)) {
-            $this->content .= '<img src="App/Files/'.$nameImg.'" alt="Image doc pdf : '.$nameImg.'">';
-        }
-        else {
-            $this->content .= '<img src="App/Img/default_pdf_image.jpg" alt="Une image">';
-        }
-
-        // $data = json_encode($array);
-        // echo "<script> function(); </script>";
-        // var data = JSON.parse(json);
-
-                $this->content .= '<section class="cont1">';
-                    $this->content .= '<div class="box elem1">';
-                    $this->content .= '<h2>Exif</h2>';
-                    $this->content .= '</div>';
-
-                    $this->content .= '<div class="box elem2">';
-                    $this->content .= '<h2>Location</h2>';
-                    $this->content .= '</div>';
-
-                    $this->content .= '<div class="box elem3">';
-                    $file = array_keys($array)[0];
-                    $this->content .= '<h2>' . $file . '</h2>';
-                    foreach($array[$file] as $key => $value){
-                        $this->content .= '<p><strong>' . $key . ' : </strong>' . $value . '</p>';
-                    }
-
-                    $this->content .= '</div>';
-
-                $this->content .= '</section>';
-            $this->content .= '</section>';
-
-            $this->content .= '<section class="container2">';
-                $this->content .= '<div class="box">';
-                $xmp = array_keys($array)[1];
-                $this->content .= '<h2>' . $xmp . '</h2>';
-                foreach($array[$xmp] as $key => $value){
-                    $this->content .= '<p><strong>' . $key . ' : </strong>' . $value . '</p>';
+        $this->content .= '<section class="previewInfo">';
+            $this->content .= '<nav class="sectionMenu">';
+                foreach($data as $key => $value){
+                    $this->content .= '<a href="#'.$key.'_box">'.$key.'</a>';
                 }
+            $this->content .= '</nav>';
+        $this->content .= '</section>';
 
-                $this->content .= '</div>';
 
-                $this->content .= '<div class="box">';
-                $other = array_keys($array)[2];
-                $this->content .= '<h2>' . $other . '</h2>';
-                foreach($array[$other] as $key => $value){
-                    if($key != 'Contributor'){
-                        $this->content .= '<p><strong>' . $key . ' : </strong>' . $value . '</p>';
+
+        $this->content .= '<section class="previewMeta">';
+            $this->content .= '<div class="card" id="image">';
+                $this->content .= '<h2>Preview image</h2>';
+                $this->content .= '<div class="img">';
+                    if (file_exists('App/Files/'.$nameImg)) {
+                        $this->content .= '<img src="App/Files/'.$nameImg.'" alt="Image doc pdf : '.$nameImg.'">';
                     }
-                }
-
+                    else {
+                        $this->content .= '<img src="App/Img/default_pdf_image.jpg" alt="Une image">';
+                    }
                 $this->content .= '</div>';
+            $this->content .= '</div>';
 
-                $this->content .= '<div class="box">';
-                $this->content .= '<h2>Author</h2>';
+            foreach($data as $key => $value){
+                $this->content .= '<div class="card" id="'.$key.'_box">';
+                    $this->content .= '<h2>'.$key.'</h2>';
+
+                    $this->content .= '<ul>';
+                        if(is_array($value)){
+                            $index = 0;
+                            foreach($value as $k => $v){
+                                if($index % 2 == 0){
+                                    $this->content .= '<li id="elemP">';
+                                }
+                                else {
+                                    $this->content .= '<li id="elemI">';
+                                }
+                                $this->content .= '<p><strong>'.$k.'</strong></p>';
+                                if(is_array($v)){
+                                    $this->content .= '<p>| ';
+                                    foreach ($v as $newValue) {
+                                        $this->content .= $newValue.' | ';
+                                    }
+                                    $this->content .= '</p>';
+                                }
+                                else {
+                                    $this->content .= '<p>'.$v.'</p>';
+                                }
+                                $this->content .= '</li>';
+                                $index++;
+                            }
+                        }
+                        else {
+                            $this->content .= '<li id="elemP">';
+                            $this->content .= '<p><strong>'.$key.'</strong></p>';
+                            $this->content .= '<p>'.$value.'</p>';
+                            $this->content .= '</li>';
+                        }
+
+                    $this->content .= '</ul>';
                 $this->content .= '</div>';
-            $this->content .= '</section>';
+            }
         $this->content .= '</section>';
 
 

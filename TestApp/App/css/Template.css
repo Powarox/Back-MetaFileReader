@@ -1,21 +1,70 @@
 body {
-    background: #26547C;
+    margin: 0;
+    color: #333333;
     font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    padding: 0 10px;
+    list-style-type: none;
+}
+
+#arrow {
+    right: 30px;
+    bottom: 30px;
+    position: fixed;
+    color: #348AF4;
+    font-size: 30px;
+}
+
+
+/* ----- Header ----- */
+.menu {
+    padding: 0 50px;
+    display: flex;
+    justify-content: flex-start;
+    background: #348AF4;
+}
+
+.menu a {
+    color: #333;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 15px 20px;
+    padding: 10px;
+    border: 2px solid #348AF4;
+    transition: 0.5s;
+}
+
+.menu a:hover {
+    color: white;
+    border: 2px solid #333;
+    border-radius: 10px;
+    transition: 0.7s;
 }
 
 header h1 {
     text-align: center;
+    background: #DDD;
+    margin: 0;
+    padding: 20px 0;
 }
 
 
 main {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin: 0 50px;
+    margin: 50px 20px;
 }
 
 
-/* ############ Upload Page ############ */
+
+
+
+
+/* ----- Upload Section ----- */
 .upload {
 	margin: 75px 0;
 	display: flex;
@@ -28,20 +77,20 @@ main {
 }
 
 .fileHover{
-	box-shadow: 0 0 10em #fe4a49;
-	border: 7px dashed #fe4a49;
+	box-shadow: 0 0 2em #fe4a49;
+	border: 2px dashed #fe4a49;
 }
 
 #dropFileDiv {
-	width: 80%;
+	width: 70%;
     height: 250px;
-    background: #ffcf60;
+    background: #DDD;
     display: flex;
     justify-content: center;
     border-radius: 10px;
     transition: 0.6s;
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 #dropFileDiv input[type='file'] {
@@ -53,7 +102,6 @@ main {
     padding: 16px;
     color: #26547C;
     align-self: center;
-    border: 2px solid white;
     border-radius: 10px;
     font-size: 20px;
     font-weight: bold;
@@ -61,8 +109,9 @@ main {
 }
 
 #dropFileDiv label:hover{
-    background: #499F68;
+    color: #499F68;
     border: 2px solid #499F68;
+    transition: 0.9s;
 }
 
 #progressBar {
@@ -73,7 +122,7 @@ main {
 #uploadButton {
     display: block;
     cursor: pointer;
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 14px 40px;
     text-align: center;
 	font-weight: bold;
@@ -89,69 +138,81 @@ main {
 	color: white;
     background: #499F68;
     border: 3px solid #499F68;
+    transition: 0.5s;
 }
 
 
-/* ############ Preview Meta ############ */
-.previewInfo .container1 {
+
+/* ----- Preview Info Section ----- */
+.previewInfo {
+    border-bottom: 2px solid #DDD;
+    margin: 0 15%;
+}
+
+.previewInfo .sectionMenu {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.previewInfo .sectionMenu a {
+    color: #348AF4;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+.previewInfo .sectionMenu a:hover {
+    border-radius: 5px;
+    background: #DDD;
+}
+
+
+
+/* ----- Preview Meta Section ----- */
+.previewMeta {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.previewInfo .container1 img {
-    width: 350px;
-    margin: auto;
+.previewMeta .card {
+    margin: 20px;
+    padding: 0 20px;
+    border: 2px solid #DDD;
     border-radius: 10px;
 }
 
-.previewInfo .container1 .cont1 {
+.previewMeta .card .img {
+    display: flex;
+    justify-content: space-around;
+    background: #DDD;
+}
+
+.previewMeta .card img {
+    max-width: 320px;
+    max-height: 350px;
+    border-radius: 10px;
+}
+
+.previewMeta .card ul li {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    padding: 0 5px;
+    grid-template-columns: 1fr 3fr;
+    border-top: 1px solid #DDD;
 }
 
-.previewInfo .container1 .cont1 .elem3 {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
-
-.previewInfo .container2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin: 20px 0;
-}
-
-section .box {
-    margin: 5px;
-    padding: 10px 20px;
-    min-height: 100px;
-    border: 1px solid white;
-    border-radius: 5px;
-}
-
-section .box .meta {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    align-items: center;
-    padding: 0 20px;
-    border: 1px solid white;
-    border-radius: 10px
-}
-
-
-
-/* ############ Preview Action ############ */
-.previewAction .container2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin: 20px 0;
+#elemP {
+    background: #EEE;
 }
 
 
 
 
-/* ############ Other ############ */
-.fantome {
-    display: none;
+
+/* ----- Footer ----- */
+footer {
+    width: 100%;
+    bottom: 10px;
+    text-align: center;
 }
+
+
+/*  */
