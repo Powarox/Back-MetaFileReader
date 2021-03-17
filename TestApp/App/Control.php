@@ -4,10 +4,15 @@ namespace TestApp\App;
 
 class Control {
     protected $lib;
+    protected $feedback;
 
     public function __construct($lib){
         $this->view = new View();
         $this->lib = $lib;
+
+        $feedback = key_exists('feedback', $_SESSION) ? $_SESSION['feedback'] : '';
+        $this->feedback = $feedback;
+        $_SESSION['feedback'] = '';
     }
 
     public function execute(){
@@ -31,7 +36,7 @@ class Control {
 
 // ################ Default Action ################ //
     public function defaultAction(){
-        $this->view->makeHomePage();
+        $this->view->makeHomePage($this->feedback);
     }
 
 
@@ -93,7 +98,7 @@ class Control {
         $meta = $this->lib->openMetaOnJsonFile($filePathJson);
         asort($meta);
 
-        $this->view->makeAffichagePage($meta, $filePathImg);
+        $this->view->makeAffichagePage($meta, $filePathImg, $this->feedback);
     }
 
 
@@ -112,7 +117,7 @@ class Control {
         $meta = $this->lib->openMetaOnJsonFile($filePathJson);
         asort($meta);
 
-        $this->view->makeActionPage($meta);
+        $this->view->makeActionPage($meta, $this->feedback);
     }
 
     public function modification($newData){

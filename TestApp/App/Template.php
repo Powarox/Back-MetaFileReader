@@ -29,6 +29,8 @@
         </header>
 
         <main>
+            <?php echo $this->feedback ?>
+
             <?php echo $this->content ?>
         </main>
 

@@ -9,7 +9,8 @@ class View {
     }
 
 // ################ Home Page ################ //
-    public function makeHomePage(){
+    public function makeHomePage($feedback){
+        $this->feedback = $feedback;
         $this->title = 'Home page : Upload your document';
         $this->content = '
         <section class="upload">
@@ -34,22 +35,23 @@ class View {
     }
 
     public function displayUploadFailure(){
-        $this->POSTredirect('index.php?');
+        $this->POSTredirect('index.php?', '<p class="feedback">L\'upload à échoué :(</p>');
     }
 
     public function displayUploadSucces(){
-        $this->POSTredirect('index.php?action=affichageResult#fileLabelText');
+        $this->POSTredirect('index.php?action=affichageResult#fileLabelText', '<p class="feedback">Upload réussi !</p>');
     }
 
     public function displayUploadNecessary(){
-        $this->POSTredirect('index.php?');
+        $this->POSTredirect('index.php?', '<p class="feedback">Vous devez upload un document avant cette action</p>');
         // feedback upload doc before
     }
 
 
 
 // ################ Affichage Métadonnées ################ //
-    public function makeAffichagePage($data, $nameImg){
+    public function makeAffichagePage($data, $nameImg, $feedback){
+        $this->feedback = $feedback;
         $this->title = 'Affichage page : Métadonnées';
         $this->content .= '<section class="previewInfo">';
             $this->content .= '<nav class="sectionMenu">';
@@ -117,7 +119,8 @@ class View {
 
 
 // ################ Modification Page ################ //
-    public function makeActionPage($data){
+    public function makeActionPage($data, $feedback){
+        $this->feedback = $feedback;
         $this->title = 'Modification page : Modifier les métadonnées';
         $this->content .= '<section class="previewInfo">';
             $this->content .= '<nav class="sectionMenu">';
@@ -173,11 +176,11 @@ class View {
     }
 
     public function displayModificationSucces(){
-        $this->POSTredirect('index.php?action=');
+        $this->POSTredirect('index.php?action=', '<p class="feedback">Modifications prises en comptes !</p>');
     }
 
     public function displayModificationFailed(){
-        $this->POSTredirect('index.php?action=');
+        $this->POSTredirect('index.php?action=', '<p class="feedback">La modification à échoué :(</p>');
     }
 
 
@@ -187,7 +190,8 @@ class View {
         include('Template.php');
     }
 
-    public function POSTredirect($url){
+    public function POSTredirect($url, $feedback){
+        $_SESSION['feedback'] = $feedback;
         header("Location: ".htmlspecialchars_decode($url), true, 303);
         die;
     }
