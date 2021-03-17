@@ -121,6 +121,8 @@ class Control {
     }
 
     public function modification($newData){
+        // intercepter $_POST pour recupe les data
+
         $this->view->displayModificationSucces($meta);
         $this->view->displayModificationFailed($meta);
     }
