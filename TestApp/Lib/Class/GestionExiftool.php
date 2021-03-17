@@ -5,6 +5,8 @@ namespace TestApp\Lib\Class;
 class GestionExiftool {
 
     public function exiftoolExist(){
+        $extentions = get_loaded_extensions();
+        var_dump($extentions);
         return true;
     }
 
@@ -16,6 +18,8 @@ class GestionExiftool {
     public function installExiftool(){
         return true;
     }
+
+
 
 }
 

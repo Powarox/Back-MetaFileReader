@@ -78,7 +78,7 @@ class Control {
         $meta = $this->lib->openMetaOnJsonFile($filePathJson);
         asort($meta);
 
-        $this->view->affichage($meta, $filePathImg);
+        $this->view->makeAffichagePage($meta, $filePathImg);
     }
 
 // --- Utilisation de la Librairie php ---
@@ -92,9 +92,23 @@ class Control {
         $this->lib->saveMetaJsonFile($dir, $name, $meta);
     }
 
-    public function actionOnFile(){
+    public function askModification(){
+        $files = $this->getUploadDocuments();
+        $folder = 'App/Files/';
+
+        $filePathJson = $folder.$files['text'];
+
+        $meta = $this->lib->openMetaOnJsonFile($filePathJson);
+        asort($meta);
+
+        $this->view->makeActionPage($meta);
+    }
+
+    public function modification($newData){
 
     }
+
+
 
 // ################ Utilitaire ################ //
     public function getUploadDocuments(){

@@ -20,9 +20,7 @@ class View {
         $this->POSTredirect('index.php?action=affichageResult#fileLabelText');
     }
 
-    public function affichage($data, $nameImg){
-        // $this->content = '<a href="index.php">Retour Upload</a>';
-
+    public function makeAffichagePage($data, $nameImg){
         $this->content .= '<section class="previewInfo">';
             $this->content .= '<nav class="sectionMenu">';
                 foreach($data as $key => $value){
@@ -88,14 +86,70 @@ class View {
         $this->content .= '</section>';
 
 
-        $this->content .= '
-            <section class="previewAction">
-                <form class="modifyForm" action="index.html" method="post">
-                    <label for="modifyInput">Choisir la métadonnées à modifier :
-                        <button id="addElem" type="button" name="button">Ajouter</button>
-                    </label>
-                </form>
-            </section>';
+        // $this->content .= '
+        //     <section class="previewAction">
+        //         <form class="modifyForm" action="index.html" method="post">
+        //             <label for="modifyInput">Choisir la métadonnées à modifier :
+        //                 <button id="addElem" type="button" name="button">Ajouter</button>
+        //             </label>
+        //         </form>
+        //     </section>';
+    }
+
+    public function makeActionPage($data){
+        $this->content .= '<section class="previewInfo">';
+            $this->content .= '<nav class="sectionMenu">';
+                foreach($data as $key => $value){
+                    $this->content .= '<a href="#'.$key.'_box">'.$key.'</a>';
+                }
+            $this->content .= '</nav>';
+        $this->content .= '</section>';
+
+
+
+        $this->content .= '<section class="previewMeta">';
+            $this->content .= '<form id="modificationForm" action="index.php?action=modification" method="post">';
+            foreach($data as $key => $value){
+                $this->content .= '<div class="card" id="'.$key.'_box">';
+                    $this->content .= '<h2>'.$key.'</h2>';
+                    $this->content .= '<ul>';
+                        if(is_array($value)){
+                            $index = 0;
+                            foreach($value as $k => $v){
+                                if($index % 2 == 0){
+                                    $this->content .= '<li id="elemP">';
+                                }
+                                else {
+                                    $this->content .= '<li id="elemI">';
+                                }
+                                $this->content .= '<p><strong>'.$k.'</strong></p>';
+                                if(is_array($v)){
+                                    $this->content .= '<input type="text" name="'.$key.'['.$k.']" value="';
+                                    foreach ($v as $newValue) {
+                                        $this->content .= $newValue.' | ';
+                                    }
+                                    $this->content .= '">';
+                                }
+                                else {
+                                    $this->content .= '<input type="text" name="'.$key.'['.$k.']" value="'.$v.'">';
+                                }
+                                $this->content .= '</li>';
+                                $index++;
+                            }
+                        }
+                        else {
+                            $this->content .= '<li id="elemP">';
+                            $this->content .= '<p><strong>'.$key.'</strong></p>';
+                            $this->content .= '<input type="text" name="'.$key.'[]" value="'.$value.'">';
+                            $this->content .= '</li>';
+                        }
+
+                    $this->content .= '</ul>';
+                $this->content .= '</div>';
+            }
+            $this->content .= '<input id="modifButton" type="submit" value="Modifier">';
+            $this->content .= '<form>';
+        $this->content .= '</section>';
     }
 
     public function render(){

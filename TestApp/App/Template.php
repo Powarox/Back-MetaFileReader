@@ -18,7 +18,8 @@
         <header id="topHeader">
             <nav class="menu">
                 <a href="index.php">Home</a>
-                <a href="index.php?action=modify">Actions</a>
+                <a href="index.php?action=affichageResult">Métadonnées</a>
+                <a href="index.php?action=askModification">Actions</a>
                 <a href="index.php?action=about">About Lib</a>
             </nav>
 
