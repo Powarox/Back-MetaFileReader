@@ -29,26 +29,6 @@
         </header>
 
         <main>
-            <section class="upload">
-                <form id="dropFileForm" action="index.php?action=upload" method="post" onsubmit="uploadFiles(event)" enctype="multipart/form-data">
-                    <div id="dropFileDiv"
-                    ondragover="overrideDefault(event);fileHover();" ondragenter="overrideDefault(event);fileHover();" ondragleave="overrideDefault(event);fileHoverEnd();" ondrop="overrideDefault(event);fileHoverEnd();
-                          addFiles(event);">
-                        <label for="fileInput" id="fileLabel">
-                            <i class="fas fa-upload"></i>
-                            <span id="fileLabelText">
-                              Choose a file
-                            </span>
-                            <span id="uploadStatus"></span>
-                            <i class="fas fa-upload"></i>
-                        </label>
-                        <input type="file" name="files" id="fileInput" onchange="addFiles(event)">
-                    </div>
-                    <progress id="progressBar"></progress>
-                    <input id="uploadButton" type="submit" value="Upload">
-                </form>
-            </section>
-
             <?php echo $this->content ?>
         </main>
 

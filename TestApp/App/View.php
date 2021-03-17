@@ -8,8 +8,29 @@ class View {
         $this->content = '';
     }
 
+// ################ Home Page ################ //
     public function makeHomePage(){
-        $this->content = '';
+        $this->title = 'Home page : Upload your document';
+        $this->content = '
+        <section class="upload">
+            <form id="dropFileForm" action="index.php?action=upload" method="post" onsubmit="uploadFiles(event)" enctype="multipart/form-data">
+                <div id="dropFileDiv"
+                ondragover="overrideDefault(event);fileHover();" ondragenter="overrideDefault(event);fileHover();" ondragleave="overrideDefault(event);fileHoverEnd();" ondrop="overrideDefault(event);fileHoverEnd();
+                      addFiles(event);">
+                    <label for="fileInput" id="fileLabel">
+                        <i class="fas fa-upload"></i>
+                        <span id="fileLabelText">
+                          Choose a file
+                        </span>
+                        <span id="uploadStatus"></span>
+                        <i class="fas fa-upload"></i>
+                    </label>
+                    <input type="file" name="files" id="fileInput" onchange="addFiles(event)">
+                </div>
+                <progress id="progressBar"></progress>
+                <input id="uploadButton" type="submit" value="Upload">
+            </form>
+        </section>';
     }
 
     public function displayUploadFailure(){
@@ -20,7 +41,16 @@ class View {
         $this->POSTredirect('index.php?action=affichageResult#fileLabelText');
     }
 
+    public function displayUploadNecessary(){
+        $this->POSTredirect('index.php?');
+        // feedback upload doc before
+    }
+
+
+
+// ################ Affichage Métadonnées ################ //
     public function makeAffichagePage($data, $nameImg){
+        $this->title = 'Affichage page : Métadonnées';
         $this->content .= '<section class="previewInfo">';
             $this->content .= '<nav class="sectionMenu">';
                 foreach($data as $key => $value){
@@ -28,8 +58,6 @@ class View {
                 }
             $this->content .= '</nav>';
         $this->content .= '</section>';
-
-
 
         $this->content .= '<section class="previewMeta">';
             $this->content .= '<div class="card" id="image">';
@@ -84,19 +112,13 @@ class View {
                 $this->content .= '</div>';
             }
         $this->content .= '</section>';
-
-
-        // $this->content .= '
-        //     <section class="previewAction">
-        //         <form class="modifyForm" action="index.html" method="post">
-        //             <label for="modifyInput">Choisir la métadonnées à modifier :
-        //                 <button id="addElem" type="button" name="button">Ajouter</button>
-        //             </label>
-        //         </form>
-        //     </section>';
     }
 
+
+
+// ################ Modification Page ################ //
     public function makeActionPage($data){
+        $this->title = 'Modification page : Modifier les métadonnées';
         $this->content .= '<section class="previewInfo">';
             $this->content .= '<nav class="sectionMenu">';
                 foreach($data as $key => $value){
@@ -105,10 +127,8 @@ class View {
             $this->content .= '</nav>';
         $this->content .= '</section>';
 
-
-
-        $this->content .= '<section class="previewMeta">';
-            $this->content .= '<form id="modificationForm" action="index.php?action=modification" method="post">';
+        $this->content .= '<section class="previewActionMeta">';
+            $this->content .= '<form id="modifyForm" action="index.php?action=modification" method="post">';
             foreach($data as $key => $value){
                 $this->content .= '<div class="card" id="'.$key.'_box">';
                     $this->content .= '<h2>'.$key.'</h2>';
@@ -147,11 +167,22 @@ class View {
                     $this->content .= '</ul>';
                 $this->content .= '</div>';
             }
-            $this->content .= '<input id="modifButton" type="submit" value="Modifier">';
-            $this->content .= '<form>';
+            $this->content .= '</form>';
+            $this->content .= '<input id="modifyButton" type="submit" form="modifyForm" value="Modifier">';
         $this->content .= '</section>';
     }
 
+    public function displayModificationSucces(){
+        $this->POSTredirect('index.php?action=');
+    }
+
+    public function displayModificationFailed(){
+        $this->POSTredirect('index.php?action=');
+    }
+
+
+
+// ################ Utilitaire ################ //
     public function render(){
         include('Template.php');
     }
@@ -161,33 +192,3 @@ class View {
         die;
     }
 }
-
-
-
-
-
-// $this->content .= '
-//         <section class="cont1">
-//             <div class="box elem1">
-//                 <h2>Exif</h2>
-//             </div>
-//             <div class="box elem2">
-//                 <h2>Location</h2>
-//             </div>
-//             <div class="box elem3">
-//                 <h2>File</h2>
-//             </div>
-//         </section>
-//     </section>
-//     <section class="container2">
-//         <div class="box">
-//             <h2>XMP</h2>
-//         </div>
-//         <div class="box">
-//             <h2>Other</h2>
-//         </div>
-//         <div class="box">
-//             <h2>Author</h2>
-//         </div>
-//     </section>
-// </section>';

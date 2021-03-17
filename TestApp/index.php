@@ -2,6 +2,7 @@
 
 namespace TestApp;
 
+session_start();
 require_once('Loader/Autoload.php');
 spl_autoload_register('TestApp\Loader\Autoload::monAutoload');
 

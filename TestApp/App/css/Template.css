@@ -119,7 +119,7 @@ main {
 	transition: 0.5s;
 }
 
-#uploadButton {
+#uploadButton, #modifyButton {
     display: block;
     cursor: pointer;
     margin: 10px auto;
@@ -134,7 +134,7 @@ main {
     transition: 0.5s;
 }
 
-#uploadButton:hover {
+#uploadButton:hover, #modifyButton:hover {
 	color: white;
     background: #499F68;
     border: 3px solid #499F68;
@@ -203,6 +203,39 @@ main {
     background: #EEE;
 }
 
+
+
+/* ----- Preview Meta Section ----- */
+.previewActionMeta form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.previewActionMeta form .card {
+    margin: 20px;
+    padding: 0 20px;
+    border: 2px solid #DDD;
+    border-radius: 10px;
+}
+
+.previewActionMeta form .card .img {
+    display: flex;
+    justify-content: space-around;
+    background: #DDD;
+}
+
+.previewActionMeta form .card img {
+    max-width: 320px;
+    max-height: 350px;
+    border-radius: 10px;
+}
+
+.previewActionMeta form .card ul li {
+    display: grid;
+    padding: 0 5px;
+    grid-template-columns: 1fr 3fr;
+    border-top: 1px solid #DDD;
+}
 
 
 

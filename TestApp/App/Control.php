@@ -29,13 +29,14 @@ class Control {
         $this->view->render();
     }
 
-    // Home page
+// ################ Default Action ################ //
     public function defaultAction(){
-        $this->cleanFolder();
         $this->view->makeHomePage();
     }
 
-    // Upload : récup files
+
+
+// ################ Upload ################ //
     public function upload(){
         $this->cleanFolder();
 
@@ -45,6 +46,7 @@ class Control {
             if($_FILES['files']['error'] != 0){
                 $this->view->displayUploadFailure();
             }
+            $_SESSION['upload'] = 'fileUpload';
 
             $file = $_FILES['files'];
             $filename = $file['name'];
@@ -68,7 +70,20 @@ class Control {
         }
     }
 
+    public function traitementOnUpload($dir, $filename, $name){
+        $filePath = $dir . $filename;
+        $meta = $this->lib->getMetaByType($filePath);
+        $this->lib->saveMetaJsonFile($dir, $name, $meta);
+    }
+
+
+
+// ################ Affichage ################ //
     public function affichageResult(){
+        if(empty($_SESSION['upload'])){
+            $this->view->displayUploadNecessary();
+        }
+
         $files = $this->getUploadDocuments();
         $folder = 'App/Files/';
 
@@ -81,18 +96,14 @@ class Control {
         $this->view->makeAffichagePage($meta, $filePathImg);
     }
 
-// --- Utilisation de la Librairie php ---
-    public function traitementOnUpload($dir, $filename, $name){
-        $filePath = $dir . $filename;
 
-        // Extraction des métadonnées
-        $meta = $this->lib->getMetaByType($filePath);
 
-        // Sauvegarde des metadonnées dans fichier Json
-        $this->lib->saveMetaJsonFile($dir, $name, $meta);
-    }
-
+// ################ Modification ################ //
     public function askModification(){
+        if(empty($_SESSION['upload'])){
+            $this->view->displayUploadNecessary();
+        }
+
         $files = $this->getUploadDocuments();
         $folder = 'App/Files/';
 
@@ -105,7 +116,8 @@ class Control {
     }
 
     public function modification($newData){
-
+        $this->view->displayModificationSucces($meta);
+        $this->view->displayModificationFailed($meta);
     }
 
 
