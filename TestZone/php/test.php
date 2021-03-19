@@ -3,21 +3,21 @@
 
 
 
-// $data = shell_exec("exiftool -g -json all-document1.pdf");
-// $dataJson = json_decode($data, true);
-// var_dump($dataJson[0]);
+// $data = shell_exec("exiftool -g -json img.jpg");
+// $meta = json_decode($data, true);
+// var_dump($meta[0]);
 //
-// $dataJson[0]['XMP']['Title'] = 'I\'m here nigger';
-// var_dump($dataJson);
-//
-// $dataT = json_encode($dataJson);
+// $meta[0]['EXIF']['Model'] = 'Xiaomi Mi 10';
+// var_dump($meta);
+// //
+// $datajson = json_encode($meta);
 // $metaTxt = fopen('test.json', 'w');
-// fputs($metaTxt, $dataT);
+// fputs($metaTxt, $datajson);
 // fclose($metaTxt);
 
 
-shell_exec("exiftool -json = test.json");
+var_dump(shell_exec("exiftool -json=test.json img.jpg"));
 
-$data2 = shell_exec("exiftool -g -json all-document1.pdf");
+$data2 = shell_exec("exiftool -g -json img.jpg");
 $dataJson2 = json_decode($data2, true);
 var_dump($dataJson2[0]);
