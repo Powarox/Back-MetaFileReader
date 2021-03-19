@@ -120,11 +120,34 @@ class Control {
         $this->view->makeActionPage($meta, $this->feedback);
     }
 
-    public function modification($newData){
-        // intercepter $_POST pour recupe les data
+    public function modification(){
+        try {
+            $newData = $_POST;
+            $this->lib->saveMetaJsonFile('App/Out/', 'newJsonData', $newData);
+            $this->view->displayModificationSucces();
+        }
+        catch (Exception $e) {
+            $this->view->displayModificationFailed();
+        }
+    }
 
-        $this->view->displayModificationSucces($meta);
-        $this->view->displayModificationFailed($meta);
+
+
+// ################ Download File ################ //
+    public function downloadFile(){
+        $this->view->makeDownloadPage($this->feedback);
+    }
+
+    public function downloadFileInitial(){
+        $this->view->makeDownloadPage($this->feedback);
+    }
+
+    public function downloadFileUpdate(){
+        $this->view->makeDownloadPage($this->feedback);
+    }
+
+    public function downloadArchive(){
+        $this->view->makeDownloadPage($this->feedback);
     }
 
 

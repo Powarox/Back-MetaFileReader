@@ -21,6 +21,10 @@ class Metadata {
         $this->typeOfFile = $tab[1];
     }
 
+    public function modifyFileMeta($dataPath, $filePath){
+        $data = shell_exec("exiftool -g -json ".$filePath);
+    }
+
     // Type potentielle de meta en fonction du fichier
     public function test(){
         $potential = array(

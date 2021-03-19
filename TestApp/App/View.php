@@ -114,6 +114,7 @@ class View {
                 $this->content .= '</div>';
             }
         $this->content .= '</section>';
+        $this->content .= '<a id="modifyButton" href="index.php?action=askModification">Modifier les métadonnées</a>';
     }
 
 
@@ -176,11 +177,38 @@ class View {
     }
 
     public function displayModificationSucces(){
-        $this->POSTredirect('index.php?action=', '<p class="feedback">Modifications prises en comptes !</p>');
+        $this->POSTredirect('index.php?action=downloadFile', '<p class="feedback">Modifications prises en comptes !</p>');
     }
 
     public function displayModificationFailed(){
-        $this->POSTredirect('index.php?action=', '<p class="feedback">La modification à échoué :(</p>');
+        $this->POSTredirect('index.php?action=askModification', '<p class="feedback">La modification à échoué :(</p>');
+    }
+
+
+
+// ################ Download Page ################ //
+
+    public function makeDownloadPage($feedback){
+        $this->feedback = $feedback;
+        $this->title = 'Download page : Télécharger votre document';
+        $this->content .= '<section class="download">';
+            $this->content .= '<h2>Souhaitez-vous télécharger votre document ?</h2>';
+
+            $this->content .= '<div>';
+                $this->content .= '<h3>Document initial : </h3>';
+                $this->content .= '<a id="downloadButton" href="index.php?action=downloadFileInitial">Download</a>';
+            $this->content .= '</div>';
+
+            $this->content .= '<div>';
+                $this->content .= '<h3>Document modifier : </h3>';
+                $this->content .= '<a id="downloadButton" href="index.php?action=downloadFileUpdate">Download</a>';
+            $this->content .= '</div>';
+
+            $this->content .= '<div>';
+                $this->content .= '<h3>Télécharger une archive : </h3>';
+                $this->content .= '<a id="downloadButton" href="index.php?action=downloadArchive">Download</a>';
+            $this->content .= '</div>';
+        $this->content .= '</section>';
     }
 
 
