@@ -217,6 +217,7 @@ class View {
 
 // ################ About Project ################ //
     public function makeAboutPage(){
+        $this->feedback = '';
         $this->title = 'About page : Description du projet';
         $this->content .= 'Readme + explication';
     }
