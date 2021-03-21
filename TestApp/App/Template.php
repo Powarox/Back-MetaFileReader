@@ -20,7 +20,7 @@
                 <a href="index.php">Home</a>
                 <a href="index.php?action=affichageResult">Métadonnées</a>
                 <a href="index.php?action=askModification">Actions</a>
-                <a href="index.php?action=about">About Lib</a>
+                <a href="index.php?action=makeAboutPage">About Lib</a>
             </nav>
 
             <h1><?php echo $this->title ?></h1>

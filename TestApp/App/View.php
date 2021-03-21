@@ -44,7 +44,6 @@ class View {
 
     public function displayUploadNecessary(){
         $this->POSTredirect('index.php?', '<p class="feedback">Vous devez upload un document avant cette action</p>');
-        // feedback upload doc before
     }
 
 
@@ -187,7 +186,6 @@ class View {
 
 
 // ################ Download Page ################ //
-
     public function makeDownloadPage($feedback){
         $this->feedback = $feedback;
         $this->title = 'Download page : Télécharger votre document';
@@ -209,6 +207,18 @@ class View {
                 $this->content .= '<a id="downloadButton" href="index.php?action=downloadArchive">Download</a>';
             $this->content .= '</div>';
         $this->content .= '</section>';
+    }
+
+    public function displayDownloadFailed(){
+        $this->POSTredirect('index.php?action=downloadFile', '<p class="feedback">Le téléchargement à échoué :(</p>');
+    }
+
+
+
+// ################ About Project ################ //
+    public function makeAboutPage(){
+        $this->title = 'About page : Description du projet';
+        $this->content .= 'Readme + explication';
     }
 
 

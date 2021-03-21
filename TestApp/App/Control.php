@@ -51,13 +51,15 @@ class Control {
             if($_FILES['files']['error'] != 0){
                 $this->view->displayUploadFailure();
             }
-            $_SESSION['upload'] = 'fileUpload';
 
             $file = $_FILES['files'];
             $filename = $file['name'];
             $fileType = $file['type'];
             $tabExt = explode('.', $filename);
             $tabType = explode('/', $fileType);
+
+            $_SESSION['upload'] = 'fileUpload';
+            $_SESSION['filename'] = $filename;
 
             move_uploaded_file($file["tmp_name"], "App/Files/".$filename);
 
@@ -139,7 +141,26 @@ class Control {
     }
 
     public function downloadFileInitial(){
-        $this->view->makeDownloadPage($this->feedback);
+        if(key_exists('filename', $_SESSION)){
+            $name = $_SESSION['filename'];
+        }
+
+        $file = 'App/Files/'.$name;
+
+        if(file_exists($file)){
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            readfile($file);
+            $this->view->makeDownloadPage($this->feedback);
+        }
+        else{
+            $this->view->displayDownloadFailed();
+        }
     }
 
     public function downloadFileUpdate(){
