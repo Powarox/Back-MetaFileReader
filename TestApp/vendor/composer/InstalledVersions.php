@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ee6c8c20866bba78a52ce9396f153c4c7b473989',
+    'reference' => 'f38833e440344db7a45b46a63ef7795e117bf67a',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,16 +41,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'ee6c8c20866bba78a52ce9396f153c4c7b473989',
+      'reference' => 'f38833e440344db7a45b46a63ef7795e117bf67a',
     ),
     'robindev/metadata' => 
     array (
-      'pretty_version' => 'v1.4',
-      'version' => '1.4.0.0',
+      'pretty_version' => 'v1.6',
+      'version' => '1.6.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '2e69314613a72f891367e36dc7ba6b97c4eb9592',
+      'reference' => 'ef631391ae21837e181d0f583012e0935b7cc254',
     ),
   ),
 );
