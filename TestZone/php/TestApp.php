@@ -5,35 +5,45 @@
 // -------- Modification --------
 // Extraction                                   OK
 echo '<h2>Meta de base</h2>';
-$data = shell_exec("exiftool -g -json img.jpg");
+$data = shell_exec("exiftool -g -json xmp-document2.pdf");
 $meta = json_decode($data, true);
-var_dump($meta[0]);
-
-// Modif                                        OK
-echo '<h2>Meta modifié</h2>';
-$meta[0]['IPTC']['By-line'] = 'tot';
+$meta = $meta[0];
 var_dump($meta);
 
-// Save in json file                            OK
-$datajson = json_encode($meta);
-$metaTxt = fopen('test.json', 'w');
-fputs($metaTxt, $datajson);
-fclose($metaTxt);
+// throw new \Exception("Error ... Message : Ce type de fichier n'est pas pris en charge", 1);
 
-// Import meta from json file to file upload    not OK
-shell_exec("exiftool -json=test.json img.jpg");
-
-// shell_exec("exiftool -json=test.json > img.jpg");    Supprime tout le contenue du fichier initial
-
-// shell_exec("exiftool -json=test.json img2.jpg");    Pas de fichier de sortie
-
-// shell_exec("exiftool -json=test.json > img2.jpg");   New fichier mais perte de meta
-
-// Extraction
-echo '<h2>File apres sauvegarde des modification</h2>';
-$data2 = shell_exec("exiftool -g -json img.jpg");
-$dataJson2 = json_decode($data2, true);
-var_dump($dataJson2[0]);
+// // Modif                                        OK
+// echo '<h2>Meta modifié</h2>';
+// // $meta['IPTC']['By-line'] = 'Captain tttttttttttttttttttttttttttttttttt Jack Morgan Moriniere';
+// $meta['XMP']['Creator'] = 'Captain tttttttttttttttttttttttttttttttttt Jack Morgan Moriniere';
+//
+// $metaRandom = [];
+// foreach($meta as $key => $value){
+//     if(is_array($value)){
+//         foreach ($value as $k => $v) {
+//             $metaRandom[$k] = $v;
+//         }
+//     }
+//     else{
+//         $metaRandom[$key] = $value;
+//     }
+// }
+// var_dump($metaRandom);
+//
+// // Save in json file                            OK
+// $datajson = json_encode($metaRandom);
+// $metaTxt = fopen('test.json', 'w');
+// fputs($metaTxt, $datajson);
+// fclose($metaTxt);
+//
+// // Import meta from json file to file upload    not OK
+// shell_exec("exiftool -json=test.json doc.pdf");
+//
+// // Extraction
+// echo '<h2>File apres sauvegarde des modification</h2>';
+// $data2 = shell_exec("exiftool -json doc.pdf");
+// $dataJson2 = json_decode($data2, true);
+// var_dump($dataJson2[0]);
 
 
 
@@ -58,9 +68,9 @@ var_dump($dataJson2[0]);
 
 
 // -------- Voir extension sur serveur --------
-echo '<h2>Extension Serveur</h2>';
-$extentions = get_loaded_extensions();
-var_dump($extentions);
+// echo '<h2>Extension Serveur</h2>';
+// $extentions = get_loaded_extensions();
+// var_dump($extentions);
 
 
 

@@ -163,7 +163,7 @@ class View {
                         else {
                             $this->content .= '<li id="elemP">';
                             $this->content .= '<p><strong>'.$key.'</strong></p>';
-                            $this->content .= '<input type="text" name="'.$key.'[]" value="'.$value.'">';
+                            $this->content .= '<input type="text" name="'.$key.'" value="'.$value.'">';
                             $this->content .= '</li>';
                         }
 

@@ -125,7 +125,13 @@ class Control {
     public function modification(){
         try {
             $newData = $_POST;
-            $this->lib->saveMetaJsonFile('App/Out/', 'newJsonData', $newData);
+            $metaTransform = $this->lib->transformMetaArray($newData);
+
+            $jsonFilePath = $this->lib->saveMetaJsonFile('App/Out/', 'newJsonData', $metaTransform);
+
+            $filePath = 'App/Files/'.$_SESSION['filename'];
+
+            $this->lib->importNewMetaFromJsonFile($jsonFilePath, $filePath);
             $this->view->displayModificationSucces();
         }
         catch (Exception $e) {
@@ -148,14 +154,7 @@ class Control {
         $file = 'App/Files/'.$name;
 
         if(file_exists($file)){
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="'.basename($file).'"');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            readfile($file);
+            $this->lib->downloadFile($file);
             $this->view->makeDownloadPage($this->feedback);
         }
         else{
