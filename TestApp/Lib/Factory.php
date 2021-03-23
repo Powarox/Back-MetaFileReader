@@ -12,4 +12,6 @@ class Factory {
         $this->exiftool = new \Class\GestionExiftool();
         $this->exception = new \Class\GestionException();
     }
+
+    // ...
 }

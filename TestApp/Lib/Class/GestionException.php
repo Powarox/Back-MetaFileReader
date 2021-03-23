@@ -15,7 +15,7 @@ class GestionException {
     }
 
     public function getErr2(){
-        throw new \Exception("Error ... Message", 1);
+        throw new \Exception("Error ... Message : Fichier introuvable ...", 1);
     }
 
     public function getErr3(){
