@@ -1,26 +1,45 @@
 <?php
 
 
-// -------- Exiftool.exe --------
+// Form
 
-// Extraction
-echo '<h2>Meta de base</h2>';
-$data = shell_exec("exiftool -g -json xmp-document2.pdf");
-$meta = json_decode($data, true);
-$meta = $meta[0];
-var_dump($meta);
+var_dump($_POST);
+
+echo '
+<form class="" action="TestApp.php" method="post">
+    <input type="text" name="file[name][]" value="">
+    <input type="text" name="file[name][]" value="">
+    <input type="text" name="file[name][]" value="">
+    <input type="text" name="xmp[tool]" value="">
+
+    <input type="submit" name="" value="Modifier">
+</form>
+';
 
 
 
-echo '<h2>Meta de base</h2>';
-$data = shell_exec("bin/exiftool(-k).exe -g1 -json xmp-document2.pdf");
-$meta = json_decode($data, true);
-$meta = $meta[0];
-var_dump($meta);
 
-// path on server
-// echo getcwd();
-echo dirname(__DIR__);
+
+// // -------- Exiftool.exe --------
+//
+// // Extraction
+// echo '<h2>Meta de base</h2>';
+// $data = shell_exec("exiftool -g -json xmp-document2.pdf");
+// $meta = json_decode($data, true);
+// $meta = $meta[0];
+// var_dump($meta);
+//
+//
+//
+// echo '<h2>Meta de base</h2>';
+// $data = shell_exec("bin/exiftool(-k).exe -g1 -json xmp-document2.pdf");
+// $meta = json_decode($data, true);
+// $meta = $meta[0];
+// var_dump($meta);
+//
+// // path on server
+// // echo getcwd();
+// echo dirname(__DIR__);
 
 
 

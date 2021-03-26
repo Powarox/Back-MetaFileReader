@@ -89,11 +89,11 @@ class View {
                                 }
                                 $this->content .= '<p><strong>'.$k.'</strong></p>';
                                 if(is_array($v)){
-                                    $this->content .= '<p>| ';
+                                    $this->content .= '<div>';
                                     foreach ($v as $newValue) {
-                                        $this->content .= $newValue.' | ';
+                                        $this->content .= '<p>'.$newValue.'</p>';
                                     }
-                                    $this->content .= '</p>';
+                                    $this->content .= '</div>';
                                 }
                                 else {
                                     $this->content .= '<p>'.$v.'</p>';
@@ -147,14 +147,20 @@ class View {
                                 }
                                 $this->content .= '<p><strong>'.$k.'</strong></p>';
                                 if(is_array($v)){
-                                    $this->content .= '<input type="text" name="'.$key.'['.$k.']" value="';
+                                    $this->content .= '<div>';
                                     foreach ($v as $newValue) {
-                                        $this->content .= $newValue.' | ';
+                                        $this->content .= '<input type="text" name="'.$key.'['.$k.'][]" value="'.$newValue.'">';
                                     }
-                                    $this->content .= '">';
+                                    $this->content .= '</div>';
                                 }
                                 else {
-                                    $this->content .= '<input type="text" name="'.$key.'['.$k.']" value="'.$v.'">';
+                                    if(strlen($v) > 30){
+                                        $this->content .= '<textarea name="'.$key.'['.$k.']" rows="8">'.$v.'</textarea>';
+                                    }
+                                    else {
+                                        $this->content .= '<input type="text" name="'.$key.'['.$k.']" value="'.$v.'">';
+                                    }
+
                                 }
                                 $this->content .= '</li>';
                                 $index++;
