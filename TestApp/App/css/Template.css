@@ -160,7 +160,7 @@ main {
 /* ----- Preview Info Section ----- */
 .previewInfo {
     border-bottom: 2px solid #DDD;
-    margin: 0 15%;
+    margin: 0 1%;
 }
 
 .previewInfo .sectionMenu {
@@ -252,6 +252,9 @@ main {
 }
 
 
+.downloadDiv {
+	display: flex;
+}
 
 
 /* ----- Footer ----- */

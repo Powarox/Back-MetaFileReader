@@ -6,15 +6,22 @@ use Metadata\Tools\Utilitaire;
 use Metadata\Tools\GestionErrors;
 use Metadata\Tools\GestionExiftool;
 
+use Metadata\Forms\CreateMetaFormByType;
+use Metadata\Forms\CreateSimpleMetaForm;
+
 class Metadata {
     protected $errors;
     protected $exiftool;
     protected $utilitaire;
+    protected $simpleForm;
+    protected $metaFormByType;
 
     public function __construct(){
         $this->errors = new GestionErrors();
         $this->utilitaire = new Utilitaire();
         $this->exiftool = new GestionExiftool();
+        $this->simpleForm = new CreateSimpleMetaForm();
+        $this->metaFormByType = new CreateMetaFormByType();
     }
 
 
@@ -138,7 +145,7 @@ class Metadata {
 
 
 
-// ########## ------------- Autre ------------- ########## //
+// ########## ------------- Utilitary ------------- ########## //
     /**
      * Télécharge un fichier
      *
@@ -149,4 +156,164 @@ class Metadata {
     }
 
 
+
+// ########## ------------- Multiple Call Function ------------- ########## //
+    /**
+     * Extrait les métadonnées d'un fichier puis les sauvegarde dans un fichier
+     * json
+     *
+     * @param String $filePath : localisation du fichier dossier/file.extension
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+    */
+    public function extractAndSaveMeta($filePath, $folder, $name){
+        $meta = $this->getMeta($filePath);
+        $this->saveMetaJsonFile($folder, $name, $meta);
+    }
+
+    /**
+     * Extrait les métadonnées d'un fichier, les sauvegarde dans un fichier json
+     * puis télécharge ce fichier json
+     *
+     * @param String $filePath : localisation du fichier dossier/file.extension
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+    */
+    public function extractSaveAndDownloadMeta($filePath, $folder, $name){
+        $meta = $this->getMeta($filePath);
+        $jsonPath = $this->saveMetaJsonFile($folder, $name, $meta);
+        $this->utilitaire->downloadFile($jsonPath);
+    }
+
+    /**
+     * Extrait les métadonnées d'un fichier en les triant par type puis les
+     * sauvegarde dans un fichier json
+     *
+     * @param String $filePath : localisation du fichier dossier/file.extension
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+    */
+    public function extractByTypeAndSaveMeta($filePath, $folder, $name){
+        $metaByType = $this->getMetaByType($filePath);
+        $this->saveMetaJsonFile($folder, $name, $metaByType);
+    }
+
+    /**
+     * Extrait les métadonnées d'un fichier en les triant par type, les
+     * sauvegarde dans un fichier json puis télécharge ce fichier json
+     *
+     * @param String $filePath : localisation du fichier dossier/file.extension
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+    */
+    public function extractByTypeSaveAndDownloadMeta($filePath, $folder, $name){
+        $metaByType = $this->getMetaByType($filePath);
+        $jsonPath = $this->saveMetaJsonFile($folder, $name, $metaByType);
+        $this->utilitaire->downloadFile($jsonPath);
+    }
+
+    /**
+     * Transforme un array trié par type, en un array non trié, Sauvegarde les
+     * les métadonnées dans un fichier json puis modifie un fichier à partir
+     * des métatransformés
+     *
+     * @param String $jsonFilePath : localisation du fichier json contenant les
+     * nouvelles métadonnées dir/file.json
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+     * @param Array $meta : contient des métadonnées trié par type
+    */
+    public function transformSaveAndImportMeta($filePath, $folder, $name, $meta){
+        $metaTransform = $this->transformMetaArray($meta);
+        $jsonPath = $this->saveMetaJsonFile($folder, $name, $metaTransform);
+        $this->importNewMetaFromJsonFile($filePath, $jsonPath);
+    }
+
+    /**
+     * Transforme un array trié par type, en un array non trié, Sauvegarde les
+     * les métadonnées dans un fichier json, modifie un fichier à partir des
+     * métatransformés puis télécharge le fichier modifié
+     *
+     * @param String $jsonFilePath : localisation du fichier json contenant les
+     * nouvelles métadonnées dir/file.json
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+     * @param Array $meta : contient des métadonnées trié par type
+    */
+    public function transformSaveImportAndDownloadMeta($filePath, $folder, $name, $meta){
+        $metaTransform = $this->transformMetaArray($meta);
+        $jsonPath = $this->saveMetaJsonFile($folder, $name, $metaTransform);
+        $this->importNewMetaFromJsonFile($filePath, $jsonPath);
+        $this->utilitaire->downloadFile($filePath);
+    }
+
+    /**
+     * Sauvegarde les les métadonnées dans un fichier json puis modifie un fichier
+     * à partir des métadonnées
+     *
+     * @param String $jsonFilePath : localisation du fichier json contenant les
+     * nouvelles métadonnées dir/file.json
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+     * @param Array $meta : contient des métadonnées trié par type
+    */
+    public function saveAndImportMeta($filePath, $folder, $name, $meta){
+        $jsonPath = $this->saveMetaJsonFile($folder, $name, $meta);
+        $this->importNewMetaFromJsonFile($filePath, $jsonPath);
+    }
+
+    /**
+     * Sauvegarde les les métadonnées dans un fichier json, modifie un fichier
+     * à partir des métadonnées puis télécharge le fichier modifié
+     *
+     * @param String $jsonFilePath : localisation du fichier json contenant les
+     * nouvelles métadonnées dir/file.json
+     * @param String $folder : nom du dossier de sortie dir/dir/
+     * @param String $name : nom du fichier de sortie sans extension
+     * @param Array $meta : contient des métadonnées trié par type
+    */
+    public function saveImportAndDownloadMeta($filePath, $folder, $name, $meta){
+        $jsonPath = $this->saveMetaJsonFile($folder, $name, $meta);
+        $this->importNewMetaFromJsonFile($filePath, $jsonPath);
+        $this->utilitaire->downloadFile($filePath);
+    }
+
+
+// ########## ------------- Create Meta Forms ------------- ########## //
+    /**
+     * Créer un formulaire HTML à partir de métadonnées trié par type
+     *
+     * Param obligatoires
+     * @param Array $metaByType : donnée pour construire le form
+     * @param String $formAction : action à effectuer après envoie (index.php?...)
+     * @param String $formMethode : methode d'envoie (get, post, ...)
+     *
+     * Param optionnels
+     * @param Array $formClass : ajouter une class sur le from
+     * @param String $formId : ajouter un id sur le form
+     * @param String $divClass : ajouter une class pour les div
+     * @param Array $submitId : ajouter un id sur bouton submit
+     * @param String $name : ajouter une value sur bounton submit
+     *
+     * @return String $this->form : formulaire HTML au format de string
+    */
+    public function createMetaFormByType($metaByType, $formAction, $formMethode,
+        $formClass = '', $formId = '',  $divClass = '', $submitId = '', $name = 'valider'){
+        $this->simpleForm->createMetaFormByType($metaByType, $formAction, $formMethode,
+                $formClass, $formId,  $divClass, $submitId, $name);
+    }
+
+    /**
+    * Créer un formulaire HTML à partir de métadonnées
+     *
+     * Param obligatoires
+     * @param Array $metaByType : donnée pour construire le form
+     * @param String $formAction : action à effectuer après envoie (index.php?...)
+     * @param String $formMethode : methode d'envoie (get, post, ...)
+     *
+     * @return String $this->form : formulaire HTML au format string
+    */
+    public function createForm($metaByType, $formAction, $formMethode){
+        $this->metaFormByType->createForm($metaByType, $formAction, $formMethode);
+    }
 }

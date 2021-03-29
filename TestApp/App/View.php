@@ -198,20 +198,19 @@ class View {
         $this->content .= '<section class="download">';
             $this->content .= '<h2>Souhaitez-vous télécharger votre document ?</h2>';
 
-            $this->content .= '<div>';
-                $this->content .= '<h3>Document initial : </h3>';
-                $this->content .= '<a id="downloadButton" href="index.php?action=downloadFileInitial">Download File</a>';
+            $this->content .= '<div class="downloadDiv">';
+                $this->content .= '<a id="uploadButton" href="index.php?action=downloadFileInitial">Download File</a>';
             $this->content .= '</div>';
 
-            $this->content .= '<div>';
-                $this->content .= '<h3>Document modifier : </h3>';
-                $this->content .= '<a id="downloadButton" href="index.php?action=downloadFileUpdate">Download File</a>';
-            $this->content .= '</div>';
-
-            $this->content .= '<div>';
-                $this->content .= '<h3>Télécharger une archive : </h3>';
-                $this->content .= '<a id="downloadButton" href="index.php?action=downloadArchive">Download Files</a>';
-            $this->content .= '</div>';
+            // $this->content .= '<div>';
+            //     $this->content .= '<h3>Document modifier : </h3>';
+            //     $this->content .= '<a id="downloadButton" href="index.php?action=downloadFileUpdate">Download File</a>';
+            // $this->content .= '</div>';
+            //
+            // $this->content .= '<div>';
+            //     $this->content .= '<h3>Télécharger une archive : </h3>';
+            //     $this->content .= '<a id="downloadButton" href="index.php?action=downloadArchive">Download Files</a>';
+            // $this->content .= '</div>';
         $this->content .= '</section>';
     }
 

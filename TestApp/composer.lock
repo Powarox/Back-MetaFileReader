@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1cb2bd6a08b83c29722e0cc5491457b",
+    "content-hash": "1641a9daee543ae8fda106d5bfa34c55",
     "packages": [
         {
             "name": "robindev/metadata",
-            "version": "v1.7",
+            "version": "v1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Powarox2159/robindev-metadata.git",
-                "reference": "6d9bae1dda996b97d1554ea7ff6fd777966d6866"
+                "reference": "885592b2c932ce7d6a09388429f5a9d6363af786"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Powarox2159/robindev-metadata/zipball/6d9bae1dda996b97d1554ea7ff6fd777966d6866",
-                "reference": "6d9bae1dda996b97d1554ea7ff6fd777966d6866",
+                "url": "https://api.github.com/repos/Powarox2159/robindev-metadata/zipball/885592b2c932ce7d6a09388429f5a9d6363af786",
+                "reference": "885592b2c932ce7d6a09388429f5a9d6363af786",
                 "shasum": ""
             },
             "require": {
@@ -57,9 +57,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Powarox2159/robindev-metadata/issues",
-                "source": "https://github.com/Powarox2159/robindev-metadata/tree/v1.7"
+                "source": "https://github.com/Powarox2159/robindev-metadata/tree/v1.9"
             },
-            "time": "2021-03-23T18:28:13+00:00"
+            "time": "2021-03-29T20:36:31+00:00"
         }
     ],
     "packages-dev": [],
