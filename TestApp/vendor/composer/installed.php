@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '8ef2909e49cb8d10ad101f76f29edc7fe68ee6e8',
+    'reference' => '7d44e310abbef7ef4eb029158676e4798bccd36a',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,16 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '8ef2909e49cb8d10ad101f76f29edc7fe68ee6e8',
+      'reference' => '7d44e310abbef7ef4eb029158676e4798bccd36a',
     ),
     'robindev/metadata' => 
     array (
-      'pretty_version' => 'v1.9',
-      'version' => '1.9.0.0',
+      'pretty_version' => 'v2.1',
+      'version' => '2.1.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '885592b2c932ce7d6a09388429f5a9d6363af786',
+      'reference' => 'f8b82d9235ebce1eeed883d8f32fac6549341e35',
     ),
   ),
 );

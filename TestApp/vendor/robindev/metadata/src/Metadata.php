@@ -131,7 +131,16 @@ class Metadata {
 
 
 
-// ########## ------------- Sorted Array ------------- ########## //
+// ########## ------------- Utilitary ------------- ########## //
+    /**
+     * Télécharge un fichier
+     *
+     * @param String $filePath : nom du dossier de sortie dir/dir/file.png
+    */
+    public function downloadFile($filePath){
+        $this->utilitaire->downloadFile($filePath);
+    }
+
     /**
      * Trie un tableau par longueur des des valeur(array)
      *
@@ -141,18 +150,6 @@ class Metadata {
     public function sortedArrayByValue($meta){
         asort($meta);
         return $meta;
-    }
-
-
-
-// ########## ------------- Utilitary ------------- ########## //
-    /**
-     * Télécharge un fichier
-     *
-     * @param String $filePath : nom du dossier de sortie dir/dir/file.png
-    */
-    public function downloadFile($filePath){
-        $this->utilitaire->downloadFile($filePath);
     }
 
 
@@ -279,6 +276,7 @@ class Metadata {
     }
 
 
+
 // ########## ------------- Create Meta Forms ------------- ########## //
     /**
      * Créer un formulaire HTML à partir de métadonnées trié par type
@@ -299,7 +297,7 @@ class Metadata {
     */
     public function createMetaFormByType($metaByType, $formAction, $formMethode,
         $formClass = '', $formId = '',  $divClass = '', $submitId = '', $name = 'valider'){
-        $this->simpleForm->createMetaFormByType($metaByType, $formAction, $formMethode,
+        return $this->metaFormByType->createMetaFormByType($metaByType, $formAction, $formMethode,
                 $formClass, $formId,  $divClass, $submitId, $name);
     }
 
@@ -314,6 +312,6 @@ class Metadata {
      * @return String $this->form : formulaire HTML au format string
     */
     public function createForm($metaByType, $formAction, $formMethode){
-        $this->metaFormByType->createForm($metaByType, $formAction, $formMethode);
+        return $this->simpleForm->createForm($metaByType, $formAction, $formMethode);
     }
 }

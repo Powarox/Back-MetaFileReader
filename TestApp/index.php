@@ -11,8 +11,8 @@ require './vendor/autoload.php';
 use TestApp\App\Control;
 // use TestApp\Lib\Metadata;
 
-$lib = new Lib\Metadata();
-// $onlineLib = new \Metadata\Metadata();
+// $lib = new Lib\Metadata();
+$onlineLib = new \Metadata\Metadata();
 
 $control = new App\Control($onlineLib);
 $control->execute();
