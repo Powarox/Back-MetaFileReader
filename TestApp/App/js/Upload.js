@@ -83,23 +83,7 @@ function uploadFiles(event){
     // };
     //
     // xhr.send(formData);
-
+    //
     // Affiche la preview
     // setVisiblePreview();
-}
-
-function setVisiblePreview(){
-    // Invisible upload section
-    let upload = document.querySelector('.upload');
-    upload.classList.add('fantome');
-
-    // Show metadata of file upload
-    let previewInfo = document.querySelector('.previewInfo');
-    previewInfo.classList.remove('fantome');
-
-    // Show actions dispo
-    let previewAction = document.querySelector('.previewAction');
-    previewAction.classList.remove('fantome');
-
-    // Add multiple action for users
 }
