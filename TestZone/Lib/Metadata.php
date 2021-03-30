@@ -1,13 +1,60 @@
 <?php
 
-namespace Lib;
+namespace TestApp\Lib;
 
 class Metadata {
+    protected $file;
+    protected $meta;
+    protected $typeOfFile;
 
 // Constructor
-    public function __construct(){
-
+    public function __construct(){  // $file
+        // $this->file = '$file';
+        // $this->meta = $this->meta($this->file);
+        // $this->typeOfFile = "";     // Pdf, Jpg, Png, ...
     }
+
+    // Extrait l'extension du fichier a traiter
+    public function extractTypeOfFile($meta){
+        $filename = $meta['FileName'];
+        $tab = explode('.', $filename);
+        $this->typeOfFile = $tab[1];
+    }
+
+    public function modifyFileMeta($dataPath, $filePath){
+        $data = shell_exec("exiftool -g -json ".$filePath);
+    }
+
+    // Type potentielle de meta en fonction du fichier
+    public function test(){
+        $potential = array(
+            "pdf" => array("PDF", "XMP", "..."),
+            "jpg" => array("XMP", "IPTC", "geoloc", "..."),
+            "png" => array("XMP", "IPTC", "geoloc", "...")
+        );
+    }
+
+    public function typeTest($filePath){
+        $data = shell_exec("exiftool -g -json ".$filePath);
+        $metaData = json_decode($data, true);
+        return $metaData;
+    }
+
+    // Trouve occurence d'un type dans tableau metaType xmp, file, ...
+    // occurence XMP... | ...XMP
+    // "/@?(".$motif.")/im" : occurence n'importe ou dans string
+    public function regex($array, $motif){
+        $pattern = "/@?^(".$motif.")|@?(".$motif.")$/im";
+        $metaTypeOf = [];
+
+        foreach($array as $key => $value){
+            if(preg_match($pattern, $key)){
+                $metaTypeOf[$key] = $value;
+            }
+        }
+        return $metaTypeOf;
+    }
+
 
     /**
      * Extrait les métadonnées d'un fichier
@@ -17,6 +64,19 @@ class Metadata {
     */
     public function getMeta($file){
         $data = shell_exec("exiftool -json ".$file);
+        $metaData = json_decode($data, true);
+        return $metaData[0];
+    }
+
+
+    /**
+     * Extrait les métadonnées d'un fichier en les triant par type
+     *
+     * @param String $filePath : localisation du fichier dossier/file.extension
+     * @return Array $metaData : contient les métadonnées du fichier d'entré
+    */
+    public function getMetaByType($filePath){
+        $data = shell_exec("exiftool -g -json ".$filePath);
         $metaData = json_decode($data, true);
         return $metaData[0];
     }
@@ -52,20 +112,26 @@ class Metadata {
     }
 
 
-    /**
-     * Trie les métadonnées par type
-     *
-     * @param String $file : localisation du fichier dossier/file.extension
-     * @return Array $arrayMetaType : métadonnées triées par type
-    */
-    public function getMetaSortType(){
-        // Warning need moyen de classer les types
-        $arrayMetaType = array(
-            'type1' => array('file' => 'test', 'source' => 'test'),
-            'type2' => array('XMP' => 'test', 'XMPLoc' => 'test'),
-        );
-        return $arrayMetaType;
-    }
+    // /**
+    //  * Trie les métadonnées par type
+    //  *
+    //  * @param Array $meta : tableau contenant les métadonnées
+    //  * @param String $file : localisation du fichier dossier/file.extension
+    //  * @return Array $arrayMetaType : métadonnées triées par type
+    // */
+    // public function getMetaByType($meta){
+    //     // Warning need moyen de classer les types
+    //     $type = array('file', 'xmp');
+    //     $arrayMetaType = [];
+    //
+    //     foreach($type as $key){
+    //         $arrayMetaType[$key] = $this->regex($meta, $key);
+    //         $meta = array_diff_key($meta, $arrayMetaType[$key]);
+    //     }
+    //     $arrayMetaType['other'] = $meta;
+    //
+    //     return $arrayMetaType;
+    // }
 
 
     /**
@@ -153,12 +219,15 @@ class Metadata {
      * @param String $folder : nom du dossier de sortie dir/dir/
      * @param String $name : nom du fichier de sortie sans extension
      * @param Array $meta : array contenant les métadonnées à sauvegarder
+     * @return String $filepath : chemin du fichier json contenant les méta
     */
     public function saveMetaJsonFile($folder, $name, $meta){
         $data = json_encode($meta);
-        $metaTxt = fopen($folder.$name.'.json', 'w');
+        $filepath = $folder.$name.'.json';
+        $metaTxt = fopen($filepath, 'w');
         fputs($metaTxt, $data);
         fclose($metaTxt);
+        return $filepath;
     }
 
 
@@ -183,25 +252,4 @@ class Metadata {
 
     }
 
-
-// Gestion des erreurs
-    public function getErr1(){
-        throw new \Exception("Error ... Message : Ce type de fichier n'est pas pris en charge", 1);
-    }
-
-    public function getErr2(){
-        throw new \Exception("Error ... Message", 1);
-    }
-
-    public function getErr3(){
-        throw new \Exception("Error ... Message", 1);
-    }
 }
-
-// try {
-//
-// } catch(e) {
-//
-// } finally {
-//
-// }
