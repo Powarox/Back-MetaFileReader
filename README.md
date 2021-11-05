@@ -1,8 +1,14 @@
 # Projet-BibliothequePHP
 Projet Tutoré bibliothèque PHP
 
+## Liens utiles
 
-Installation de la librairie :
+https://packagist.org/packages/robindev/metadata
+
+https://dev-21606393.users.info.unicaen.fr/M1/ProjetLibPhp/TestApp/index.php
+
+
+## Installation de la librairie :
 
 require : "php": ">=5.3.0"
 
