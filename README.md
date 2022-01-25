@@ -1,5 +1,4 @@
 # Projet-BibliothequePHP
-Projet Tutoré bibliothèque PHP
 [![](https://tokei.rs/b1/github/Powarox2159/Projet-BibliothequePHP?category=code)](https://github.com/Powarox2159/Projet-BibliothequePHP)
 
 ## Liens utiles
